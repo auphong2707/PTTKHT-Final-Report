@@ -1,0 +1,623 @@
+\documentclass[10pt,english]{article}
+\raggedbottom
+\sloppy
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+\usepackage{authblk}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage[english]{babel}
+\usepackage{setspace}
+\usepackage{times}
+\usepackage{indentfirst}
+\usepackage{titlepic}
+\usepackage{enumitem}
+\usepackage[utf8]{inputenc}
+\usepackage[T5]{fontenc}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{minted}
+\usepackage{hyperref}
+\usepackage{charter}
+\usepackage{float}
+\usepackage{subfig}  % For subfigure support
+\usepackage[table,xcdraw]{xcolor}
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=2.75cm,right=2.75cm,marginparwidth=1.75cm]{geometry}
+
+\graphicspath{ {./images/} }
+\setcounter{tocdepth}{3}
+
+% --- Global spacing shrink by 20% ---
+% Put in the preamble, after \documentclass
+\usepackage{calc}      % allows 0.4\length arithmetic
+\usepackage{setspace}  % for line spacing
+\usepackage{enumitem}  % for list spacing
+\usepackage{titlesec}  % for section spacing (optional but helpful)
+
+% 1) Line spacing (baseline)
+% If you previously used \onehalfspacing or \setstretch{1.2}, reduce by 20% of that:
+% Example: from 1.2 -> 0.96
+\setstretch{0.4} % 0.4 × the default line spacing (tight!)
+% If you were already using \setstretch{s}, replace with \setstretch{0.4*s}.
+
+% 2) Paragraph spacing/indent
+\setlength{\parskip}{.4\parskip}
+\setlength{\parindent}{.4\parindent}
+
+% 3) Displayed math spacing
+\setlength{\abovedisplayskip}{.4\abovedisplayskip}
+\setlength{\belowdisplayskip}{.4\belowdisplayskip}
+\setlength{\abovedisplayshortskip}{.4\abovedisplayshortskip}
+\setlength{\belowdisplayshortskip}{.4\belowdisplayshortskip}
+
+% 4) Floats (figures/tables) spacing
+\setlength{\textfloatsep}{.4\textfloatsep}
+\setlength{\floatsep}{.4\floatsep}
+\setlength{\intextsep}{.4\intextsep}
+\setlength{\dbltextfloatsep}{.4\dbltextfloatsep}
+\setlength{\dblfloatsep}{.4\dblfloatsep}
+
+% 5) Lists spacing (itemize/enumerate/description)
+\setlist{itemsep=.2\itemsep, topsep=.2\topsep, parsep=.2\parsep, partopsep=.2\partopsep}
+
+% 6) Section heading spacing (before/after)
+% Adjust all levels uniformly; tweak if needed.
+\titlespacing*{\section}{0pt}{.4\baselineskip}{.4\baselineskip}
+\titlespacing*{\subsection}{0pt}{.4\baselineskip}{.4\baselineskip}
+\titlespacing*{\subsubsection}{0pt}{.4\baselineskip}{.4\baselineskip}
+
+% (Optional) Tighten captions slightly (requires caption package)
+% \usepackage[skip=.4\baselineskip]{caption}
+
+
+\begin{document}
+ 
+\begin{titlepage}
+\begin{center}
+
+\textsc{\large \textcolor{black}{\textbf{HANOI UNIVERSITY OF SCIENCE AND TECHNOLOGY }}}\\[0.5cm]
+
+{\huge \Large \uppercase{School of Information Communication Technology} \\[1cm] }
+
+\includegraphics[scale=0.13]{logo-soict-hust-1.png}\\[1cm]
+\textsc{\Large \textbf{Project report:}}\\[0.4cm]	
+
+\rule{\linewidth}{0.7mm} \\[0.4cm]
+{ \huge \bfseries\color{black!70!black} Laptop Store Management System \\[0.4cm] }
+\rule{\linewidth}{0.7mm} \\[1cm]
+
+\color{black!80!black}{\large \textbf{\textit{Supervised by}:}}\\[0.4cm]
+
+\begin{tabular}{l}
+\large  Ph.D. Nguyen Duc Anh  \\[1cm]
+\end{tabular}
+
+\color{black!80!black}{\large \textbf{\textit{Presented by}:}}\\[0.4cm]
+\color{black}
+\begin{tabular}{l}
+
+\large Au Trung Phong - 20225455 \\[0.4cm]
+\large Nguyen Nam Khanh - 20225448 \\[0.4cm]
+\large Vu Duc Minh - 20225514 \\[0.4cm]
+\large Tran Sy Minh Quan - 20225521 \\[0.4cm]
+\large Dao Vu Tien Dat - 20225479 \\[0.4cm]
+\large Tran Huu Dao - 20220061 \\[0.4cm]
+
+\end{tabular}
+
+\vfill
+
+{\large \color{black!80!black}{\textbf{Hanoi - Vietnam}}\\[0.2cm] \color{blue!90!black}2025}
+
+\end{center}
+\end{titlepage}
+\setstretch{1.5}
+
+
+\tableofcontents
+
+\section{Introduction}
+
+\subsection{Problem Definition}
+\subsection{Problem Solving}
+
+
+\section{Planning}
+
+\subsection{Motivation}
+\subsection{Initial System Request}
+\subsubsection{Business Need}
+\subsubsection{Business Requirements}
+\subsubsection{Business Value}
+\subsubsection{Special Issues or Constraints}
+
+
+\subsection{Feasibility Analysis}
+
+\subsubsection{Technical Feasibility}
+\subsubsection{Operational Feasibility}
+\subsubsection{Economic Feasibility}
+\subsubsection{Legal \& Regulatory Feasibility}
+\subsubsection{Market Feasibility}
+
+\subsection{Initial Project Plan}
+
+\subsubsection{Project Scope Estimation}
+
+\subsubsection{Staffing Plan}
+
+\subsubsection{CASE Tools}
+
+\clearpage
+
+\section{Analysis}
+\subsection{General Use Cases Diagram}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{overall_uc.drawio.png}
+    \caption{Overall Use Case of Laptop Shop Management System}
+    \label{fig:backend_architecture}
+\end{figure}
+
+The general use case diagram of the \textbf{Laptop Store Management System} illustrates the main interactions between users and the system. It represents the overall system functionality and identifies the actors who participate in the system’s operations.
+
+\paragraph{Actors:}
+\begin{itemize}
+    \item \textbf{Customer:} The main user who can browse products, view laptop details, register and log in, add laptops to the cart, place orders, make payments, track orders, request refunds, and submit reviews or ratings.
+    \item \textbf{Shop Owner (Admin):} The administrator who manages the overall system operations, including inventory management, order processing, and refund handling.
+    \item \textbf{E-Bank Payment Gateway:} An external system integrated for processing online transactions through e-banking.
+    \item \textbf{User:} A general actor representing both registered and unregistered customers interacting with the system.
+\end{itemize}
+
+\paragraph{System Overview:}
+The \textbf{Laptop Store Management System} allows customers to explore available laptops, view detailed specifications, and make purchases through a streamlined online process. Registered users can manage their shopping carts, complete payments via multiple methods (including e-banking or cash on delivery), and track or request refunds for their orders. The Shop Owner manages product inventory, reviews customer refund tickets, and updates the status of customer orders.
+
+\paragraph{Diagram Description:}
+The general use case diagram demonstrates the main functionalities of the system and their relationships with each actor. The diagram includes the following major interactions:
+\begin{itemize}
+    \item Customers can \textit{Register} and \textit{Login} to access their accounts.
+    \item Once logged in, they can \textit{Explore Products}, \textit{Search Laptop}, and \textit{View Laptop Detail}.
+    \item From the laptop details, they can \textit{Filter Laptop}, \textit{Add Laptop to Cart}, \textit{Submit Review \& Ratings}, or \textit{Request Refund}.
+    \item Customers can manage their shopping cart through actions such as \textit{View Cart}, \textit{Delete Laptop from Cart}, and finally \textit{Place Order}.
+    \item The \textit{Make Payment} use case includes two options: \textit{Pay on Delivery} and \textit{Pay via E-banking}, where the latter interacts directly with the \textbf{E-Bank Payment Gateway}.
+    \item After completing orders, customers can \textit{Track Order} and, if necessary, initiate a refund request.
+    \item The \textbf{Shop Owner (Admin)} can \textit{View Dashboard}, \textit{Add/Edit/Delete Laptops from Inventory}, \textit{Change Order’s Status}, and \textit{Solve Refund Tickets}.
+\end{itemize}
+
+\paragraph{Summary:}
+This use case diagram provides an overview of how the system facilitates seamless interaction between customers, administrators, and external services. It defines the scope of user operations and forms the foundation for detailed use case descriptions presented in Section~3.2.
+
+\subsection{Use Case Details}
+
+This section presents all use case metadata cards for the Laptop Store Management System.
+Each use case diagram illustrates the interaction flow between the actors and the system.
+They are grouped by actor roles, following the same layout as the G8 System report.
+
+% =====================================================
+\subsubsection{Customer’s Use Case Details}
+% =====================================================
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{usecase_metadata_card/uc_0_register.drawio.png}
+    \caption{U0 – Register}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{usecase_metadata_card/uc_1_login.drawio.png}
+    \caption{U1 – Login}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{usecase_metadata_card/uc_2_explore_products.drawio.png}
+    \caption{U2 – Explore Products}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{usecase_metadata_card/uc_3_search_laptop.drawio.png}
+    \caption{U3 – Search Laptop}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{usecase_metadata_card/uc_4_filter_laptop.drawio.png}
+    \caption{U4 – Filter Laptop}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{usecase_metadata_card/uc_5_view_details.drawio.png}
+    \caption{U5 – View Laptop Details}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{usecase_metadata_card/uc_6_add_laptop_to_cart.drawio.png}
+    \caption{U6 – Add Laptop to Cart}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{usecase_metadata_card/uc_7_view_cart.drawio.png}
+    \caption{U7 – View Cart}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{usecase_metadata_card/uc_8_delete_laptop_from_cart.drawio.png}
+    \caption{U8 – Delete Laptop from Cart}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{usecase_metadata_card/uc_9_place_order.drawio.png}
+    \caption{U9 – Place Order}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{usecase_metadata_card/uc_10_make_payment.drawio.png}
+    \caption{U10 – Make Payment}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{usecase_metadata_card/uc_11_pay_on_delivery.drawio.png}
+    \caption{U11 – Pay on Delivery}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{usecase_metadata_card/uc_12_pay_via_e-banking.drawio.png}
+    \caption{U12 – Pay via E-banking}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{usecase_metadata_card/uc_13_track_order.drawio.png}
+    \caption{U13 – Track Order}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{usecase_metadata_card/uc_14_request_refund.drawio.png}
+    \caption{U14 – Request Refund}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{usecase_metadata_card/uc_15_submit_reviews_and_ratings.drawio.png}
+    \caption{U15 – Submit Reviews and Ratings}
+\end{figure}
+
+% =====================================================
+\subsubsection{Admin’s Use Case Details}
+% =====================================================
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{usecase_metadata_card/uc_16_view_dashboard.drawio.png}
+    \caption{U16 – View Dashboard}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{usecase_metadata_card/uc_17_add_laptop_to_inventory.drawio.png}
+    \caption{U17 – Add Laptop to Inventory}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{usecase_metadata_card/uc_18_edit_laptop_from_inventory.drawio.png}
+    \caption{U18 – Edit Laptop from Inventory}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{usecase_metadata_card/uc_19_delete_laptop_from_inventory.drawio.png}
+    \caption{U19 – Delete Laptop from Inventory}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{usecase_metadata_card/uc_20_change_order’s_status.drawio.png}
+    \caption{U20 – Update Order State}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{usecase_metadata_card/uc_21_solve_refund_tickets.drawio.png}
+    \caption{U21 – Solve Refund Tickets}
+\end{figure}
+
+% =====================================================
+\subsection{Activity Diagram}
+% =====================================================
+
+% ------------------- CUSTOMER -------------------
+\subsubsection{Customer’s Activity Diagram}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Activity_Diagram/C1_register.drawio.png}
+    \caption{U0 – Register}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Activity_Diagram/C2_login.drawio.png}
+    \caption{U1 – Login}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Activity_Diagram/UC_2.drawio.png}
+    \caption{U2 – Explore Products}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Activity_Diagram/UC_3.drawio.png}
+    \caption{U3 – Search Laptop}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Activity_Diagram/UC4.drawio.png}
+    \caption{U4 – Filter Laptop}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Activity_Diagram/UC5.drawio.png}
+    \caption{U5 – View Laptop Details}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Activity_Diagram/C3_add_laptop.drawio.png}
+    \caption{U6 – Add Laptop to Cart}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Activity_Diagram/UC7.drawio.png}
+    \caption{U7 – View Cart}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Activity_Diagram/C4_delete_cart.drawio.png}
+    \caption{U8 – Delete Laptop from Cart}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Activity_Diagram/C5.drawio.png}
+    \caption{U9 – Place Order}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Activity_Diagram/C6.drawio.png}
+    \caption{U10 – Make Payment}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Activity_Diagram/C7.drawio.png}
+    \caption{U13 – Track Order}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Activity_Diagram/C8.drawio.png}
+    \caption{U14 – Request Refund}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Activity_Diagram/U15.drawio.png}
+    \caption{U15 – Submit Reviews and Ratings}
+\end{figure}
+
+\clearpage
+
+% ------------------- ADMIN -------------------
+\subsubsection{Admin’s Activity Diagram}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Activity_Diagram/A6.drawio.png}
+    \caption{U16 –  View Dashboard}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Activity_Diagram/A1.drawio.png}
+    \caption{U17 – Add Laptop to Inventory}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Activity_Diagram/A2.drawio.png}
+    \caption{U18 – Edit Laptop from Inventory}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Activity_Diagram/A3.drawio.png}
+    \caption{U19 – Delete Laptop from Inventory}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Activity_Diagram/A4.drawio.png}
+    \caption{U20 – Update Order State}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Activity_Diagram/A5.drawio.png}
+    \caption{U21 – Solve Refund Ticket}
+\end{figure}
+
+
+\subsection{Sequence Diagram}
+% \subsubsection{Customer’s Use Case}
+% \subsubsection{Admin’s Use Case Details}
+% ============================
+%   SEQUENCE DIAGRAM FIGURES
+% ============================
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Sequence_Diagram/UC_0_Register.png}
+    \caption{UC 0 – Register}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Sequence_Diagram/UC_1_Login.png}
+    \caption{UC 1 – Login}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Sequence_Diagram/UC_2_ExploreProducts.png}
+    \caption{UC 2 – Explore Products}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Sequence_Diagram/UC_3_SearchLaptop-Trang-1.drawio.png}
+    \caption{UC 3 – Search Laptop}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Sequence_Diagram/UC_4_FilterLaptop.drawio.png}
+    \caption{UC 4 – Filter Laptop}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Sequence_Diagram/UC_5_ViewDetail.png}
+    \caption{UC 5 – View Detail}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Sequence_Diagram/UC_6_AddLaptopToCart.png}
+    \caption{UC 6 – Add Laptop to Cart}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Sequence_Diagram/UC_7_ViewCart.drawio.png}
+    \caption{UC 7 – View Cart}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Sequence_Diagram/UC_8_DeleteLaptopFromCart.png}
+    \caption{UC 8 – Delete Laptop from Cart}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Sequence_Diagram/UC_9_PlaceOrder.png}
+    \caption{UC 9 – Place Order}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Sequence_Diagram/UC_10_MakePayment.drawio.png}
+    \caption{UC 10 – Make Payment}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Sequence_Diagram/UC_13_TrackOrder.png}
+    \caption{UC 13 – Track Order}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Sequence_Diagram/UC_14_RequestRefund.drawio.png}
+    \caption{UC 14 – Request Refund}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Sequence_Diagram/UC_15_SubmitReviewAndRating.drawio.png}
+    \caption{UC 15 – Submit Review and Rating}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Sequence_Diagram/UC_16_ViewDashboard.drawio.png}
+    \caption{UC 16 – View Dashboard}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Sequence_Diagram/UC_17_AddLaptopToInventory.drawio.png}
+    \caption{UC 17 – Add Laptop to Inventory}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Sequence_Diagram/UC_18_EditLaptopFromInventory.drawio.png}
+    \caption{UC 18 – Edit Laptop from Inventory}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Sequence_Diagram/UC_19_DeleteLaptopFromInventory.drawio.png}
+    \caption{UC 19 – Delete Laptop from Inventory}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Sequence_Diagram/UC_20_ChangeOrder_sStatus.drawio.png}
+    \caption{UC 20 – Change Order State}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Sequence_Diagram/UC_21_SolveRefundTicket.drawio.png}
+    \caption{UC 21 – Solve Refund Ticket}
+\end{figure}
+
+
+\subsection{Non-functional Requirements}
+
+\section{Design}
+\subsection{Architecture Design}
+\subsubsection{Package Diagram}
+\subsubsection{Detailed Package Diagram}
+\subsection{Class Specification Design}
+\subsubsection{Model Package}
+\subsubsection{View Package}
+\subsubsection{Control Package}
+\subsection{Data Storage Design}
+\subsubsection{Overview}
+\subsubsection{Detailed Data Storage Design}
+\subsection{User Interface Design}
+\subsubsection{Interface Prototype}
+\subsubsection{Interface Specification}
+\subsubsection{Screen Flow}
+
+\section{Conclusion and Future Work}
+\subsection{Conclusion}
+\subsection{Future Work}
+
+\section*{References}
+
+\end{document}
+
