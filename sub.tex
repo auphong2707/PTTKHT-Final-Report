@@ -3,6 +3,7 @@
 \sloppy
 \usepackage{graphicx} % Required for inserting images
 \usepackage{amsmath}
+\usepackage{array}     % Required for p{} columns in multicolumn with xcolor
 \usepackage{authblk}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
@@ -22,6 +23,10 @@
 \usepackage{float}
 \usepackage{subfig}  % For subfigure support
 \usepackage[table,xcdraw]{xcolor}
+\makeatletter
+\@ifundefined{insert@pcolumn}{%
+  \let\insert@pcolumn\insert@column}{}
+\makeatother
 \usepackage[letterpaper,top=2cm,bottom=2cm,left=2.75cm,right=2.75cm,marginparwidth=1.75cm]{geometry}
 
 \graphicspath{ {./images/} }
@@ -598,13 +603,720 @@ They are grouped by actor roles, following the same layout as the G8 System repo
 \subsection{Non-functional Requirements}
 
 \section{Design}
+
+% =====================================================
 \subsection{Architecture Design}
+% =====================================================
+
 \subsubsection{Package Diagram}
+The Laptop Store Management System is architected using the \textbf{Model--View--Controller (MVC)} design pattern, which ensures a clear separation of concerns, maintainability, and scalability. This architecture divides the application into three interconnected components:
+
+\begin{itemize}
+    \item \textbf{Model Layer}: This layer represents the core business logic and data state of the application. It encapsulates entities specific to the domain, such as \texttt{Laptop} (product details, stock), \texttt{User} (customer and admin profiles), \texttt{Order} (transaction history), and \texttt{Cart} (temporary shopping items). The Model is responsible for data integrity and business rules, independent of the user interface.
+    
+    \item \textbf{View Layer}: The View layer is responsible for the presentation of data to the user. In our system, this includes the graphical user interfaces (GUI) such as the \textit{Product Catalog} for browsing laptops, the \textit{Shopping Cart} screen, the \textit{Checkout} interface, and the \textit{Admin Dashboard} for inventory management. The View observes the Model and updates the display when the state changes.
+    
+    \item \textbf{Controller Layer}: The Controller acts as an intermediary between the View and the Model. It handles user interactions, such as adding a laptop to the cart or processing a payment. Controllers like \texttt{LaptopController} and \texttt{OrderController} receive input from the View, validate it, and invoke the appropriate business logic in the Model.
+\end{itemize}
+
+The dependency direction is strictly \textbf{View $\rightarrow$ Controller $\rightarrow$ Model}, ensuring that the business logic remains decoupled from the user interface. This structure allows for easier testing and future enhancements, such as adding new payment methods or modifying the UI without affecting the core system logic.
+
+% If you have an overall package diagram PNG, insert it here.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{Package_Diagram/PackageDiagram.drawio.png}
+    \caption{MVC Package Diagram}
+    \label{fig:pkg_diagram}
+\end{figure}
+
 \subsubsection{Detailed Package Diagram}
-\subsection{Class Specification Design}
+
 \subsubsection{Model Package}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Package_Diagram/ModelPackage.drawio.png}
+    \caption{Detailed Model Package Diagram}
+    \label{fig:model_package}
+\end{figure}
+
 \subsubsection{View Package}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Package_Diagram/ViewPackage.drawio.png}
+    \caption{Detailed View Package Diagram}
+    \label{fig:view_package}
+\end{figure}
+
+\subsubsection{Controller Package}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Package_Diagram/ControllerPackage.drawio.png}
+    \caption{Detailed Controller Package Diagram}
+    \label{fig:controller_package}
+\end{figure}
+
+\subsection{Class Specification Design}
+
+\subsubsection{Model Package}
+
+% --- M_User ---
+\subsubsection{Class M\_User}
+\noindent\textbf{Description:} Represents a registered user within the system, encapsulating all necessary authentication credentials (email, password hash) and role-based access control data (Admin or Customer). This class serves as the foundation for user identity management and security.
+
+\noindent\textbf{Attributes:}
+\begin{center}
+\begin{tabular}{|p{3cm}|p{2.5cm}|p{2.5cm}|p{6cm}|}
+\hline
+\textbf{Attribute} & \textbf{Datatype} & \textbf{Accessibility} & \textbf{Description} \\ \hline
+userId & UUID & Public & Unique identifier for the user. \\ \hline
+email & String & Public & User's email address (login credential). \\ \hline
+role & String & Public & The role of the user (e.g., Admin, Customer). \\ \hline
+\end{tabular}
+\end{center}
+
+\noindent\textbf{Methods:}
+\begin{center}
+\begin{tabular}{|p{3.5cm}|p{2cm}|p{2cm}|p{2cm}|p{4cm}|}
+\hline
+\textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
+verifyPassword & - & - & Public & Verifies the user's password. \\ \hline
+deactivate & - & - & Public & Deactivates the user account. \\ \hline
+\end{tabular}
+\end{center}
+
+% --- M_Laptop ---
+\subsubsection{Class M\_Laptop}
+\noindent\textbf{Description:} Represents a specific laptop product available in the store's inventory. It holds comprehensive product details including technical specifications, brand information, current pricing, and real-time stock availability to prevent overselling.
+
+\noindent\textbf{Attributes:}
+\begin{center}
+\begin{tabular}{|p{3cm}|p{2.5cm}|p{2.5cm}|p{6cm}|}
+\hline
+\textbf{Attribute} & \textbf{Datatype} & \textbf{Accessibility} & \textbf{Description} \\ \hline
+laptopId & UUID & Public & Unique identifier for the laptop. \\ \hline
+brand & String & Public & The manufacturer brand. \\ \hline
+price & Decimal & Public & Selling price of the laptop. \\ \hline
+stockQty & int & Public & Quantity currently in stock. \\ \hline
+\end{tabular}
+\end{center}
+
+\noindent\textbf{Methods:}
+\begin{center}
+\begin{tabular}{|p{3.5cm}|p{2cm}|p{2cm}|p{2cm}|p{4cm}|}
+\hline
+\textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
+isInStock & - & - & Public & Checks if stock is available. \\ \hline
+adjustStock & - & - & Public & Modifies the stock quantity. \\ \hline
+\end{tabular}
+\end{center}
+
+% --- M_Review ---
+\subsubsection{Class M\_Review}
+\noindent\textbf{Description:} Represents a customer's feedback on a purchased product. It stores the numerical rating and textual comment provided by the user, linking the sentiment to a specific laptop and customer account.
+
+\noindent\textbf{Attributes:}
+\begin{center}
+\begin{tabular}{|p{3cm}|p{2.5cm}|p{2.5cm}|p{6cm}|}
+\hline
+\textbf{Attribute} & \textbf{Datatype} & \textbf{Accessibility} & \textbf{Description} \\ \hline
+reviewId & UUID & Public & Unique identifier for the review. \\ \hline
+rating & int & Public & Numerical rating score. \\ \hline
+comment & String & Public & Text content of the review. \\ \hline
+\end{tabular}
+\end{center}
+
+\noindent\textbf{Methods:}
+\begin{center}
+\begin{tabular}{|p{3.5cm}|p{2cm}|p{2cm}|p{2cm}|p{4cm}|}
+\hline
+\textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
+validate & - & - & Public & Validates review content. \\ \hline
+\end{tabular}
+\end{center}
+
+% --- M_Cart ---
+\subsubsection{Class M\_Cart}
+\noindent\textbf{Description:} Represents a temporary shopping session for a user. It acts as a container for selected items before purchase, maintaining the running total cost and managing the lifecycle of the shopping experience.
+
+\noindent\textbf{Attributes:}
+\begin{center}
+\begin{tabular}{|p{3cm}|p{2.5cm}|p{2.5cm}|p{6cm}|}
+\hline
+\textbf{Attribute} & \textbf{Datatype} & \textbf{Accessibility} & \textbf{Description} \\ \hline
+cartId & UUID & Public & Unique identifier for the cart. \\ \hline
+totalAmount & Decimal & Public & Total cost of items in cart. \\ \hline
+\end{tabular}
+\end{center}
+
+\noindent\textbf{Methods:}
+\begin{center}
+\begin{tabular}{|p{3.5cm}|p{2cm}|p{2cm}|p{2cm}|p{4cm}|}
+\hline
+\textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
+addItem & - & - & Public & Adds a product to the cart. \\ \hline
+recalculateTotal & - & - & Public & Updates the total amount. \\ \hline
+\end{tabular}
+\end{center}
+
+% --- M_CartItem ---
+\subsubsection{Class M\_CartItem}
+\noindent\textbf{Description:} Represents a single line item within a shopping cart, linking a specific laptop product to a desired quantity. It calculates its own subtotal based on the current price and selected quantity.
+
+\noindent\textbf{Attributes:}
+\begin{center}
+\begin{tabular}{|p{3cm}|p{2.5cm}|p{2.5cm}|p{6cm}|}
+\hline
+\textbf{Attribute} & \textbf{Datatype} & \textbf{Accessibility} & \textbf{Description} \\ \hline
+itemId & UUID & Public & Unique identifier for the item. \\ \hline
+quantity & int & Public & Number of units selected. \\ \hline
+subtotal & Decimal & Public & Price multiplied by quantity. \\ \hline
+\end{tabular}
+\end{center}
+
+% --- M_Order ---
+\subsubsection{Class M\_Order}
+\noindent\textbf{Description:} Represents a formalized purchase agreement. Once a cart is checked out, it becomes an order. This class tracks the lifecycle of the transaction from creation through processing to completion, including the final total amount and current status.
+
+\noindent\textbf{Attributes:}
+\begin{center}
+\begin{tabular}{|p{3cm}|p{2.5cm}|p{2.5cm}|p{6cm}|}
+\hline
+\textbf{Attribute} & \textbf{Datatype} & \textbf{Accessibility} & \textbf{Description} \\ \hline
+orderId & UUID & Public & Unique identifier for the order. \\ \hline
+status & String & Public & Current order state (e.g., Pending). \\ \hline
+totalAmount & Decimal & Public & Final cost of the order. \\ \hline
+\end{tabular}
+\end{center}
+
+\noindent\textbf{Methods:}
+\begin{center}
+\begin{tabular}{|p{3.5cm}|p{2cm}|p{2cm}|p{2cm}|p{4cm}|}
+\hline
+\textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
+updateStatus & - & - & Public & Updates the order status. \\ \hline
+\end{tabular}
+\end{center}
+
+% --- M_OrderItem ---
+\subsubsection{Class M\_OrderItem}
+\noindent\textbf{Description:} Represents a specific product included in a finalized order. Unlike a cart item, this record is immutable once the order is placed, preserving the price and quantity at the time of purchase for historical accuracy.
+
+\noindent\textbf{Attributes:}
+\begin{center}
+\begin{tabular}{|p{3cm}|p{2.5cm}|p{2.5cm}|p{6cm}|}
+\hline
+\textbf{Attribute} & \textbf{Datatype} & \textbf{Accessibility} & \textbf{Description} \\ \hline
+orderItemId & UUID & Public & Unique identifier for the order item. \\ \hline
+quantity & int & Public & Quantity purchased. \\ \hline
+subtotal & Decimal & Public & Total price for this line item. \\ \hline
+\end{tabular}
+\end{center}
+
+% --- M_PaymentTransaction ---
+\subsubsection{Class M\_PaymentTransaction}
+\noindent\textbf{Description:} Represents the financial record of a payment attempt associated with an order. It tracks the transaction ID from the payment gateway, the amount paid, and the success or failure status of the payment.
+
+\noindent\textbf{Attributes:}
+\begin{center}
+\begin{tabular}{|p{3cm}|p{2.5cm}|p{2.5cm}|p{6cm}|}
+\hline
+\textbf{Attribute} & \textbf{Datatype} & \textbf{Accessibility} & \textbf{Description} \\ \hline
+transactionId & UUID & Public & Unique identifier for the transaction. \\ \hline
+amount & Decimal & Public & Amount paid. \\ \hline
+\end{tabular}
+\end{center}
+
+\noindent\textbf{Methods:}
+\begin{center}
+\begin{tabular}{|p{3.5cm}|p{2cm}|p{2cm}|p{2cm}|p{4cm}|}
+\hline
+\textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
+markSuccess & - & - & Public & Marks transaction as successful. \\ \hline
+\end{tabular}
+\end{center}
+
+% --- M_RefundTicket ---
+\subsubsection{Class M\_RefundTicket}
+\noindent\textbf{Description:} Represents a formal request initiated by a customer to return a product or get a refund. It tracks the reason for the request and its current processing status (e.g., Pending, Approved, Rejected) by an administrator.
+
+\noindent\textbf{Attributes:}
+\begin{center}
+\begin{tabular}{|p{3cm}|p{2.5cm}|p{2.5cm}|p{6cm}|}
+\hline
+\textbf{Attribute} & \textbf{Datatype} & \textbf{Accessibility} & \textbf{Description} \\ \hline
+ticketId & UUID & Public & Unique identifier for the ticket. \\ \hline
+status & String & Public & Status (e.g., Pending, Approved). \\ \hline
+\end{tabular}
+\end{center}
+
+\noindent\textbf{Methods:}
+\begin{center}
+\begin{tabular}{|p{3.5cm}|p{2cm}|p{2cm}|p{2cm}|p{4cm}|}
+\hline
+\textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
+approve & - & - & Public & Approves the refund. \\ \hline
+reject & - & - & Public & Rejects the refund. \\ \hline
+\end{tabular}
+\end{center}
+
+% --- M_FilterCriteria ---
+\subsubsection{Class M\_FilterCriteria}
+\noindent\textbf{Description:} A data transfer object (DTO) used to encapsulate the user's search and filter preferences (such as brand selection and price range) when browsing the product catalog. It ensures that search queries are structured and valid.
+
+\noindent\textbf{Attributes:}
+\begin{center}
+\begin{tabular}{|p{3cm}|p{2.5cm}|p{2.5cm}|p{6cm}|}
+\hline
+\textbf{Attribute} & \textbf{Datatype} & \textbf{Accessibility} & \textbf{Description} \\ \hline
+brand & String & Public & Brand name to filter by. \\ \hline
+minPrice & Decimal & Public & Minimum price threshold. \\ \hline
+\end{tabular}
+\end{center}
+
+\noindent\textbf{Methods:}
+\begin{center}
+\begin{tabular}{|p{3.5cm}|p{2cm}|p{2cm}|p{2cm}|p{4cm}|}
+\hline
+\textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
+isValid & - & - & Public & Validates the filter criteria. \\ \hline
+\end{tabular}
+\end{center}
+
+% --- M_Metrics ---
+\subsubsection{Class M\_Metrics}
+\noindent\textbf{Description:} Represents aggregated analytical data used for the administrator's dashboard. It provides high-level insights into business performance, such as total order counts and cumulative revenue over a specific period.
+
+\noindent\textbf{Attributes:}
+\begin{center}
+\begin{tabular}{|p{3cm}|p{2.5cm}|p{2.5cm}|p{6cm}|}
+\hline
+\textbf{Attribute} & \textbf{Datatype} & \textbf{Accessibility} & \textbf{Description} \\ \hline
+totalOrders & int & Public & Total number of orders placed. \\ \hline
+totalRevenue & Decimal & Public & Total revenue generated. \\ \hline
+\end{tabular}
+\end{center}
+
+\subsubsection{View Package}
+
+% --- V_BaseView ---
+\subsubsection{Class V\_BaseView}
+\noindent\textbf{Description:} An abstract base class that defines the common structure and behavior for all user interface screens. It provides standard methods for displaying the view, hiding it, and showing error messages, ensuring a consistent look and feel across the application.
+
+\noindent\textbf{Attributes:}
+\begin{center}
+\begin{tabular}{|p{3cm}|p{2.5cm}|p{2.5cm}|p{6cm}|}
+\hline
+\textbf{Attribute} & \textbf{Datatype} & \textbf{Accessibility} & \textbf{Description} \\ \hline
+title & String & Public & Title of the current view/page. \\ \hline
+\end{tabular}
+\end{center}
+
+\noindent\textbf{Methods:}
+\begin{center}
+\begin{tabular}{|p{3.5cm}|p{2cm}|p{2cm}|p{2cm}|p{4cm}|}
+\hline
+\textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
+show & - & - & Public & Renders the view. \\ \hline
+hide & - & - & Public & Hides the view. \\ \hline
+displayError & - & - & Public & Displays an error message. \\ \hline
+\end{tabular}
+\end{center}
+
+% --- V_HomepageView ---
+\subsubsection{Class V\_HomepageView}
+\noindent\textbf{Description:} The main entry point of the application for users. It presents a welcoming interface, highlights featured products, and provides navigation options to the full product catalog or the login screen.
+
+\noindent\textbf{Methods:}
+\begin{center}
+\begin{tabular}{|p{4cm}|p{1.5cm}|p{1.5cm}|p{2cm}|p{4cm}|}
+\hline
+\textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
+renderAllProductsPage & - & - & Public & Displays the product grid. \\ \hline
+loadNextPage & - & - & Public & Loads pagination content. \\ \hline
+selectLogin & - & - & Public & Navigates to Login view. \\ \hline
+\end{tabular}
+\end{center}
+
+% --- V_RegistrationFormView ---
+\subsubsection{Class V\_RegistrationFormView}
+\noindent\textbf{Description:} The user interface responsible for capturing new user data. It presents a form for entering personal details and credentials, handling input validation feedback before submission.
+
+\noindent\textbf{Methods:}
+\begin{center}
+\begin{tabular}{|p{4cm}|p{1.5cm}|p{1.5cm}|p{2cm}|p{4cm}|}
+\hline
+\textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
+showRegistrationForm & - & - & Public & Displays registration fields. \\ \hline
+submitForm & - & - & Public & Submits the form data. \\ \hline
+\end{tabular}
+\end{center}
+
+% --- V_CatalogPageView ---
+\subsubsection{Class V\_CatalogPageView}
+\noindent\textbf{Description:} The primary interface for browsing the product inventory. It displays a grid of available laptops and provides sidebar controls for filtering results by brand, price, and other specifications.
+
+\noindent\textbf{Methods:}
+\begin{center}
+\begin{tabular}{|p{4cm}|p{1.5cm}|p{1.5cm}|p{2cm}|p{4cm}|}
+\hline
+\textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
+displayFilteredProducts & - & - & Public & Updates grid based on filter. \\ \hline
+selectFilterOptions & - & - & Public & Captures filter selections. \\ \hline
+\end{tabular}
+\end{center}
+
+% --- V_ProductPageView ---
+\subsubsection{Class V\_ProductPageView}
+\noindent\textbf{Description:} A detailed view dedicated to a single laptop product. It presents in-depth technical specifications, high-resolution images, and the option for the user to add the item to their shopping cart.
+
+\noindent\textbf{Methods:}
+\begin{center}
+\begin{tabular}{|p{4cm}|p{1.5cm}|p{1.5cm}|p{2cm}|p{4cm}|}
+\hline
+\textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
+displayLaptopDetails & - & - & Public & Shows product specs. \\ \hline
+addToCart & - & - & Public & Triggers add to cart action. \\ \hline
+\end{tabular}
+\end{center}
+
+% --- V_CartPageView ---
+\subsubsection{Class V\_CartPageView}
+\noindent\textbf{Description:} The interface where users review their selected items. It allows users to adjust quantities, remove items, view the total cost, and proceed to the checkout process.
+
+\noindent\textbf{Methods:}
+\begin{center}
+\begin{tabular}{|p{4cm}|p{1.5cm}|p{1.5cm}|p{2cm}|p{4cm}|}
+\hline
+\textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
+renderCart & - & - & Public & Lists items in the cart. \\ \hline
+deleteItem & - & - & Public & Removes an item. \\ \hline
+\end{tabular}
+\end{center}
+
+% --- V_PaymentPageView ---
+\subsubsection{Class V\_PaymentPageView}
+\noindent\textbf{Description:} The checkout interface where users select their preferred payment method. It securely collects payment details and initiates the transaction process.
+
+\noindent\textbf{Methods:}
+\begin{center}
+\begin{tabular}{|p{4.2cm}|p{1.5cm}|p{1.5cm}|p{1.8cm}|p{4cm}|}
+\hline
+\textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
+displayPaymentMethods & - & - & Public & Shows payment options. \\ \hline
+selectMethod & - & - & Public & Captures selected method. \\ \hline
+\end{tabular}
+\end{center}
+
+% --- V_ProfilePageView ---
+\subsubsection{Class V\_ProfilePageView}
+\noindent\textbf{Description:} A personal dashboard for the logged-in user. It displays account details and a history of past orders, allowing users to track their purchases and manage their profile.
+
+\noindent\textbf{Methods:}
+\begin{center}
+\begin{tabular}{|p{4cm}|p{1.5cm}|p{1.5cm}|p{2cm}|p{4cm}|}
+\hline
+\textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
+displayOrderHistory & - & - & Public & Shows past orders. \\ \hline
+\end{tabular}
+\end{center}
+
+% --- V_OrderPageView ---
+\subsubsection{Class V\_OrderPageView}
+\noindent\textbf{Description:} A dedicated view for managing active and past orders. It allows users to view the status of their current orders and initiate refund requests for eligible transactions.
+
+\noindent\textbf{Methods:}
+\begin{center}
+\begin{tabular}{|p{4cm}|p{1.5cm}|p{1.5cm}|p{2cm}|p{4cm}|}
+\hline
+\textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
+openRefundPopup & - & - & Public & Opens refund modal. \\ \hline
+refreshMyOrders & - & - & Public & Refreshes the order list. \\ \hline
+\end{tabular}
+\end{center}
+
+% --- V_ReviewPageView ---
+\subsubsection{Class V\_ReviewPageView}
+\noindent\textbf{Description:} The interface that allows customers to provide feedback on their purchases. It includes input controls for selecting a star rating and a text area for writing a detailed review.
+
+\noindent\textbf{Methods:}
+\begin{center}
+\begin{tabular}{|p{4cm}|p{1.5cm}|p{1.5cm}|p{2cm}|p{4cm}|}
+\hline
+\textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
+pressSubmitButton & - & - & Public & Submits the review. \\ \hline
+\end{tabular}
+\end{center}
+
+% --- V_DashboardPageView ---
+\subsubsection{Class V\_DashboardPageView}
+\noindent\textbf{Description:} The central hub for administrators. It visualizes key performance indicators (KPIs) through charts and graphs, providing a quick overview of the store's health and recent activity.
+
+\noindent\textbf{Methods:}
+\begin{center}
+\begin{tabular}{|p{4cm}|p{1.5cm}|p{1.5cm}|p{2cm}|p{4cm}|}
+\hline
+\textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
+renderCharts & - & - & Public & Renders analytics charts. \\ \hline
+displayDashboardError & - & - & Public & Shows admin errors. \\ \hline
+\end{tabular}
+\end{center}
+
+% --- V_InventoryPageView ---
+\subsubsection{Class V\_InventoryPageView}
+\noindent\textbf{Description:} The administrative interface for managing the product catalog. It lists all inventory items and provides controls to add new products, update existing details, or remove obsolete items.
+
+\noindent\textbf{Methods:}
+\begin{center}
+\begin{tabular}{|p{4cm}|p{1.5cm}|p{1.5cm}|p{2cm}|p{4cm}|}
+\hline
+\textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
+loadInventoryList & - & - & Public & Lists all products. \\ \hline
+clickEdit & - & - & Public & Opens edit mode. \\ \hline
+\end{tabular}
+\end{center}
+
+% --- V_AddProductPageView ---
+\subsubsection{Class V\_AddProductPageView}
+\noindent\textbf{Description:} A specialized form for administrators to input details for a new laptop product. It ensures all necessary fields like brand, price, and specs are collected before adding the item to the database.
+
+\noindent\textbf{Methods:}
+\begin{center}
+\begin{tabular}{|p{4cm}|p{1.5cm}|p{1.5cm}|p{2cm}|p{4cm}|}
+\hline
+\textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
+openAddProductForm & - & - & Public & Shows the input form. \\ \hline
+clickSubmit & - & - & Public & Submits the new product. \\ \hline
+\end{tabular}
+\end{center}
+
+% --- V_EditProductPageView ---
+\subsubsection{Class V\_EditProductPageView}
+\noindent\textbf{Description:} An interface that pre-loads existing product data for modification. It allows administrators to update prices, stock levels, or specifications of a specific laptop.
+
+\noindent\textbf{Methods:}
+\begin{center}
+\begin{tabular}{|p{4cm}|p{1.5cm}|p{1.5cm}|p{2cm}|p{4cm}|}
+\hline
+\textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
+openEditSession & - & - & Public & Loads product data. \\ \hline
+clickUpdateLaptop & - & - & Public & Saves changes. \\ \hline
+\end{tabular}
+\end{center}
+
+% --- V_OrderDashboardView ---
+\subsubsection{Class V\_OrderDashboardView}
+\noindent\textbf{Description:} The administrative view for overseeing all customer orders. It allows admins to filter orders by status, view details, and update the processing stage (e.g., from Pending to Shipped).
+
+\noindent\textbf{Methods:}
+\begin{center}
+\begin{tabular}{|p{4cm}|p{1.5cm}|p{1.5cm}|p{2cm}|p{4cm}|}
+\hline
+\textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
+fetchOrderList & - & - & Public & Loads all orders. \\ \hline
+clickUpdateStatus & - & - & Public & Updates order status. \\ \hline
+\end{tabular}
+\end{center}
+
+% --- V_RefundPanelView ---
+\subsubsection{Class V\_RefundPanelView}
+\noindent\textbf{Description:} The administrative interface for processing refund requests. It lists pending tickets and provides controls for admins to review reasons and approve or reject the refunds.
+
+\noindent\textbf{Methods:}
+\begin{center}
+\begin{tabular}{|p{4cm}|p{1.5cm}|p{1.5cm}|p{2cm}|p{4cm}|}
+\hline
+\textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
+displayPendingTickets & - & - & Public & Lists pending refunds. \\ \hline
+clickSubmitDecision & - & - & Public & Approves/Rejects refund. \\ \hline
+\end{tabular}
+\end{center}
+
 \subsubsection{Control Package}
+
+% --- C_BaseController ---
+\subsubsection{Class C\_BaseController}
+\noindent\textbf{Description:} An abstract controller that provides shared utility functions for all other controllers. It handles common tasks such as input validation, standardized error handling, and audit logging to ensure consistency in application logic.
+
+\noindent\textbf{Methods:}
+\begin{center}
+\begin{tabular}{|p{3cm}|p{2.5cm}|p{2.5cm}|p{2cm}|p{3cm}|}
+\hline
+\textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
+validateInput & payload: Map & List\textless String\textgreater & Public & Validates input. \\ \hline
+handleError & error: String & void & Public & Handles errors. \\ \hline
+logAudit & eventName: String \newline data: Map & void & Public & Logs events. \\ \hline
+\end{tabular}
+\end{center}
+
+% --- C_RegistrationController ---
+\subsubsection{Class C\_RegistrationController}
+\noindent\textbf{Description:} Manages the workflow for user sign-up. It coordinates the validation of user input from the registration view and interacts with the Model to create a new user account securely.
+
+\noindent\textbf{Methods:}
+\begin{center}
+\begin{tabular}{|p{3cm}|p{2.5cm}|p{2.5cm}|p{2cm}|p{3cm}|}
+\hline
+\textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
+validateFormData & userInfo: Map & List\textless String\textgreater & Public & Checks form data. \\ \hline
+register & userInfo: Map & String & Public & Creates account. \\ \hline
+\end{tabular}
+\end{center}
+
+% --- C_LoginController ---
+\subsubsection{Class C\_LoginController}
+\noindent\textbf{Description:} Handles the authentication process. It verifies user credentials against the stored records, manages session creation upon successful login, and handles the logout process to secure the session.
+
+\noindent\textbf{Methods:}
+\begin{center}
+\begin{tabular}{|p{3cm}|p{3cm}|p{1.5cm}|p{2cm}|p{3.5cm}|}
+\hline
+\textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
+submitCredentials & email: String \newline pass: String & void & Public & Processes login. \\ \hline
+verifyCredentials & email: String \newline pass: String & String & Public & Checks credentials. \\ \hline
+logout & sessionToken: String & void & Public & Ends session. \\ \hline
+\end{tabular}
+\end{center}
+
+% --- C_ProductController ---
+\subsubsection{Class C\_ProductController}
+\noindent\textbf{Description:} Orchestrates the retrieval and filtering of product data. It handles requests for paginated product lists, search queries, and specific product details, serving the data to the appropriate views.
+
+\noindent\textbf{Methods:}
+\begin{center}
+\begin{tabular}{|p{3.5cm}|p{3cm}|p{2cm}|p{1.5cm}|p{3cm}|}
+\hline
+\textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
+fetchPaginatedProducts & page: int, size: int & List\textless Object\textgreater & Public & Gets products page. \\ \hline
+fetchNextPage & cursor: String & List\textless Object\textgreater & Public & Gets next page. \\ \hline
+queryProducts & keywords: String & List\textless Object\textgreater & Public & Searches products. \\ \hline
+queryFilteredProducts & criteria: Map & List\textless Object\textgreater & Public & Filters products. \\ \hline
+\end{tabular}
+\end{center}
+
+% --- C_CartController ---
+\subsubsection{Class C\_CartController}
+\noindent\textbf{Description:} Manages the state of the user's shopping cart. It handles actions such as adding items, updating quantities, and removing products, ensuring the cart's total is always accurate.
+
+\noindent\textbf{Methods:}
+\begin{center}
+\begin{tabular}{|p{3cm}|p{3cm}|p{2cm}|p{1.5cm}|p{3.5cm}|}
+\hline
+\textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
+addToCart & userId: UUID \newline laptopId: UUID & Boolean & Public & Adds item to cart. \\ \hline
+removeItem & itemId: UUID & Boolean & Public & Removes item. \\ \hline
+queryCart & userId: UUID & Object & Public & Gets user cart. \\ \hline
+\end{tabular}
+\end{center}
+
+% --- C_OrderController ---
+\subsubsection{Class C\_OrderController}
+\noindent\textbf{Description:} Coordinates the complex process of order creation and management. It converts a shopping cart into a finalized order, tracks its status updates, and retrieves order history for users.
+
+\noindent\textbf{Methods:}
+\begin{center}
+\begin{tabular}{|p{3cm}|p{3cm}|p{2cm}|p{1.5cm}|p{3.5cm}|}
+\hline
+\textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
+placeOrder & cartInfo: Map & UUID & Public & Creates an order. \\ \hline
+viewOrders & userId: UUID & List\textless Object\textgreater & Public & Lists user orders. \\ \hline
+updateStatus & orderId: UUID \newline status: String & Boolean & Public & Updates status. \\ \hline
+\end{tabular}
+\end{center}
+
+% --- C_PaymentGateway ---
+\subsubsection{Class C\_PaymentGateway}
+\noindent\textbf{Description:} An interface that abstracts the interaction with external payment processing systems. It defines the contract for creating transactions and handling success or failure responses, allowing for easy swapping of payment providers.
+
+\noindent\textbf{Methods:}
+\begin{center}
+\begin{tabular}{|p{3.5cm}|p{3cm}|p{1.5cm}|p{1.5cm}|p{3.5cm}|}
+\hline
+\textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
+createTransaction & orderId: UUID & String & Public & Starts transaction. \\ \hline
+transactionSuccess & txnId: String & Boolean & Public & Confirms success. \\ \hline
+transactionFail & txnId: String \newline reason: String & Boolean & Public & Records failure. \\ \hline
+\end{tabular}
+\end{center}
+
+% --- C_PaymentController ---
+\subsubsection{Class C\_PaymentController}
+\noindent\textbf{Description:} Manages the payment workflow. It uses the Payment Gateway to process transactions for specific orders and updates the order status based on the payment outcome.
+
+\noindent\textbf{Attributes:}
+\begin{center}
+\begin{tabular}{|p{3cm}|p{3cm}|p{2.5cm}|p{4.5cm}|}
+\hline
+\textbf{Attribute} & \textbf{Datatype} & \textbf{Accessibility} & \textbf{Description} \\ \hline
+gateway & C\_PaymentGateway & Private & Payment provider interface. \\ \hline
+\end{tabular}
+\end{center}
+
+\noindent\textbf{Methods:}
+\begin{center}
+\begin{tabular}{|p{3cm}|p{3cm}|p{1.5cm}|p{1.5cm}|p{4cm}|}
+\hline
+\textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
+makePayment & orderId: UUID \newline method: String & Boolean & Public & Processes payment. \\ \hline
+updateOrderStatus & orderId: UUID \newline status: String & void & Public & Syncs order. \\ \hline
+\end{tabular}
+\end{center}
+
+% --- C_RefundController ---
+\subsubsection{Class C\_RefundController}
+\noindent\textbf{Description:} Handles the lifecycle of refund requests. It processes the submission of new refund tickets by users and coordinates the approval or rejection decisions made by administrators.
+
+\noindent\textbf{Methods:}
+\begin{center}
+\begin{tabular}{|p{3.5cm}|p{3cm}|p{2cm}|p{1.5cm}|p{3cm}|}
+\hline
+\textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
+submitRefund Request & orderId: UUID \newline reason: String & UUID & Public & Creates request. \\ \hline
+fetchPending Tickets & - & List\textless Object\textgreater & Public & Lists pending. \\ \hline
+solveTicket & ticketId: UUID \newline decision: String \newline comments: String & Boolean & Public & Resolves ticket. \\ \hline
+\end{tabular}
+\end{center}
+
+% --- C_ReviewController ---
+\subsubsection{Class C\_ReviewController}
+\noindent\textbf{Description:} Manages the submission and storage of product reviews. It validates the user's rating and comment before persisting the review data to the Model.
+
+\noindent\textbf{Methods:}
+\begin{center}
+\begin{tabular}{|p{4cm}|p{3cm}|p{1.5cm}|p{1.5cm}|p{3cm}|}
+\hline
+\textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
+validateAndStore Review & rating: int \newline comment: String & UUID & Public & Saves review. \\ \hline
+\end{tabular}
+\end{center}
+
+% --- C_AnalyticsController ---
+\subsubsection{Class C\_AnalyticsController}
+\noindent\textbf{Description:} Aggregates data for administrative insights. It calculates metrics such as total sales and revenue over specified date ranges to populate the admin dashboard.
+
+\noindent\textbf{Methods:}
+\begin{center}
+\begin{tabular}{|p{3cm}|p{3cm}|p{1.5cm}|p{2cm}|p{3.5cm}|}
+\hline
+\textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
+getMetrics & dateRange: String & Object & Public & Calculates stats. \\ \hline
+\end{tabular}
+\end{center}
+
+% --- C_InventoryController ---
+\subsubsection{Class C\_InventoryController}
+\noindent\textbf{Description:} Manages the CRUD (Create, Read, Update, Delete) operations for the product inventory. It handles the logic for adding new laptops, updating stock and prices, and removing products from the catalog.
+
+\noindent\textbf{Methods:}
+\begin{center}
+\begin{tabular}{|p{3cm}|p{3cm}|p{1.5cm}|p{1.5cm}|p{4cm}|}
+\hline
+\textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
+createNewLaptop & specs: Map \newline price: Decimal & UUID & Public & Adds laptop. \\ \hline
+deleteProduct & productId: UUID & Boolean & Public & Removes laptop. \\ \hline
+updateProductInfo & laptopId: UUID \newline fields: Map & Boolean & Public & Edits laptop. \\ \hline
+\end{tabular}
+\end{center}
+
 \subsection{Data Storage Design}
 \subsubsection{Overview}
 \subsubsection{Detailed Data Storage Design}
