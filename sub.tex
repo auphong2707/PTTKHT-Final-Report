@@ -1322,6 +1322,13 @@ updateProductInfo & laptopId: UUID \newline fields: Map & Boolean & Public & Edi
 \subsubsection{Overview}
 The database design for the Laptop Shop Management System is structured to support the system’s core retail functionalities while maintaining data integrity and scalability. The system utilizes PostgreSQL as the primary relational database management system for structured transaction and user data.
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1.0\textwidth]{ERD_DB.png}
+    \caption{Entity-Relationship diagram of the Laptop Management Store database}
+    \label{fig:backend_architecture}
+\end{figure}
+
 The schema is centered around a normalized relational structure where the users table serves as the primary entity for identity management. Relationships are strictly enforced through foreign keys to ensure consistency across the product catalog (laptops), sales transactions (orders), and customer feedback (reviews). This design ensures that all user actions are traceable and that product inventory is accurately managed through dedicated line items.
 
 \begin{table}[H]
