@@ -642,7 +642,7 @@ These classes encapsulate business rules (e.g., stock validation, subtotal compu
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.97\textwidth]{Package_Diagram/ModelPackage_redrawn.drawio.png}
+    \includegraphics[width=1\textwidth]{Package_Diagram/ModelPackage_redrawn.drawio.png}
     \caption{Detailed Package Diagram -- Model Package}
     \label{fig:model_package_diagram}
 \end{figure}
@@ -668,7 +668,7 @@ This package also contains the payment gateway abstraction to isolate external p
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.97\textwidth]{Package_Diagram/ControllerPackage_redrawn.drawio.png}
+    \includegraphics[width=1\textwidth]{Package_Diagram/ControllerPackage_redrawn.drawio.png}
     \caption{Detailed Package Diagram -- Controller Package}
     \label{fig:controller_package_diagram}
 \end{figure}
@@ -1567,7 +1567,7 @@ updateOrderStatus & orderId:UUID, \newline status:String & void & Public & Updat
 \hline
 \textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
 submitRefundRequest & userId:UUID, \newline orderId:UUID, \newline reason:String & UUID & Public & Creates refund ticket and returns ticketId. \\ \hline
-fetchPendingTickets & N/A & List\textless M\_RefundTicket\textgreater & Public & Returns all pending tickets for admin processing UI. \\ \hline
+fetchPendingTickets & page:int, size:int & List\textless M\_RefundTicket\textgreater & Public & Returns pending tickets for admin processing UI with pagination. \\ \hline
 solveTicket & adminId:UUID, ticketId:UUID, decision:String, comments:String & Boolean & Public & Approves/rejects and returns true if resolved successfully. \\ \hline
 getUserTickets & userId:UUID & List\textless M\_RefundTicket\textgreater & Public & Returns tickets belonging to a specific user. \\ \hline
 \end{tabular}
