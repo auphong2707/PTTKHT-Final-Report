@@ -1617,8 +1617,151 @@ listInventory & page:int, size:int & List\textless M\_Laptop\textgreater & Publi
 
 
 \subsection{Data Storage Design}
+
 \subsubsection{Overview}
+The database design for the Laptop Shop Management System is structured to support the system’s core retail functionalities while maintaining data integrity and scalability. The system utilizes PostgreSQL as the primary relational database management system for structured transaction and user data.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1.0\textwidth]{ERD_DB.png}
+    \caption{Entity-Relationship diagram of the Laptop Management Store database}
+    \label{fig:backend_architecture}
+\end{figure}
+
+The schema is centered around a normalized relational structure where the users table serves as the primary entity for identity management. Relationships are strictly enforced through foreign keys to ensure consistency across the product catalog (laptops), sales transactions (orders), and customer feedback (reviews). This design ensures that all user actions are traceable and that product inventory is accurately managed through dedicated line items.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|l|p{8cm}|}
+\hline
+\textbf{Index} & \textbf{Table Name} & \textbf{Description} \\ \hline
+1 & users & Central repository for account credentials, profile information, and system roles. \\ \hline
+2 & laptops & Stores extensive product details, specifications, pricing, and stock status. \\ \hline
+3 & orders & Captures transaction headers, linked to users and specific shipping snapshots. \\ \hline
+4 & order\_items & Links orders to specific products, recording quantities and purchase prices. \\ \hline
+5 & reviews & Stores customer feedback and ratings for specific laptops. \\ \hline
+6 & refund\_tickets & Manages refund requests and tracks their resolution status. \\ \hline
+\end{tabular}
+\caption{Database Tables Overview}
+\end{table}
+
 \subsubsection{Detailed Data Storage Design}
+
+\textbf{1. Table: users} \\
+Description: Stores user account information, authentication data, and authorization roles.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|l|l|c|l|p{4cm}|}
+\hline
+\textbf{Index} & \textbf{Fieldname} & \textbf{Datatype} & \textbf{Nullable} & \textbf{Constraint} & \textbf{Description} \\ \hline
+1 & id & VARCHAR(50) & No & PK, Unique & Unique identifier for the user. \\ \hline
+2 & email & VARCHAR(100) & No & Unique & User's login email address. \\ \hline
+3 & first\_name & VARCHAR(50) & No & & User's first name. \\ \hline
+4 & last\_name & VARCHAR(50) & No & & User's last name. \\ \hline
+5 & phone & VARCHAR(15) & Yes & & Contact phone number. \\ \hline
+6 & created\_at & DATETIME & No & & Timestamp of account creation. \\ \hline
+\end{tabular}
+\caption{Users Table Design}
+\end{table}
+
+\textbf{2. Table: laptops} \\
+Description: Stores extensive product details, specifications, pricing, and stock status.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|l|l|c|l|p{4cm}|}
+\hline
+\textbf{Index} & \textbf{Fieldname} & \textbf{Datatype} & \textbf{Nullable} & \textbf{Constraint} & \textbf{Description} \\ \hline
+1 & id & VARCHAR(10) & No & PK, Unique & Unique identifier for the laptop. \\ \hline
+2 & brand & VARCHAR(50) & No & & Brand name (e.g., Dell, Asus). \\ \hline
+3 & name & VARCHAR(100) & No & & Model name of the laptop. \\ \hline
+4 & description & TEXT & Yes & & Detailed product description. \\ \hline
+5 & cpu & VARCHAR(50) & No & & Processor specifications. \\ \hline
+6 & ram\_amount & VARCHAR(20) & No & & Amount of RAM (e.g., 16GB). \\ \hline
+7 & vga & VARCHAR(50) & No & & Graphics card specifications. \\ \hline
+8 & quantity & INT & No & & Current stock quantity. \\ \hline
+9 & original\_price & DECIMAL & No & & MSRP price. \\ \hline
+10 & sale\_price & DECIMAL & No & & Actual selling price. \\ \hline
+11 & product\_image & VARCHAR(255) & Yes & & URL reference to the image. \\ \hline
+12 & inserted\_at & DATETIME & No & & Timestamp of record creation. \\ \hline
+\end{tabular}
+\caption{Laptops Table Design}
+\end{table}
+
+\textbf{3. Table: orders} \\
+Description: Captures customer purchase information and transaction status.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|l|l|c|l|p{4cm}|}
+\hline
+\textbf{Index} & \textbf{Fieldname} & \textbf{Datatype} & \textbf{Nullable} & \textbf{Constraint} & \textbf{Description} \\ \hline
+1 & id & VARCHAR(10) & No & PK, Unique & Unique identifier for the order. \\ \hline
+2 & user\_id & VARCHAR(50) & No & FK & Link to users.id. \\ \hline
+3 & shipping\_address & TEXT & No & & Delivery address at time of purchase. \\ \hline
+4 & phone\_number & VARCHAR(15) & No & & Contact phone for this specific order. \\ \hline
+5 & payment\_method & VARCHAR(20) & No & & e.g., COD, E-banking. \\ \hline
+6 & total\_price & DECIMAL & No & & Total value of the order. \\ \hline
+7 & status & VARCHAR(20) & No & & Order status (Pending, Shipped, etc). \\ \hline
+8 & created\_at & DATETIME & No & & Timestamp when order was placed. \\ \hline
+\end{tabular}
+\caption{Orders Table Design}
+\end{table}
+
+\textbf{4. Table: order\_items} \\
+Description: Links orders to specific products, recording snapshots of price to ensure accurate history.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|l|l|c|l|p{4cm}|}
+\hline
+\textbf{Index} & \textbf{Fieldname} & \textbf{Datatype} & \textbf{Nullable} & \textbf{Constraint} & \textbf{Description} \\ \hline
+1 & id & VARCHAR(10) & No & PK, Unique & Unique identifier for the item. \\ \hline
+2 & order\_id & VARCHAR(10) & No & FK & Link to orders.id. \\ \hline
+3 & product\_id & VARCHAR(10) & No & FK & Link to laptops.id. \\ \hline
+4 & quantity & INT & No & & Number of units purchased. \\ \hline
+5 & price\_at\_purchase & DECIMAL & No & & Price at the time of transaction. \\ \hline
+\end{tabular}
+\caption{Order\_Items Table Design}
+\end{table}
+
+\textbf{5. Table: reviews} \\
+Description: Stores customer feedback and ratings for specific laptops.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|l|l|c|l|p{4cm}|}
+\hline
+\textbf{Index} & \textbf{Fieldname} & \textbf{Datatype} & \textbf{Nullable} & \textbf{Constraint} & \textbf{Description} \\ \hline
+1 & id & VARCHAR(10) & No & PK, Unique & Unique identifier for the review. \\ \hline
+2 & laptop\_id & VARCHAR(10) & No & FK & Link to laptops.id. \\ \hline
+3 & user\_id & VARCHAR(50) & No & FK & Link to users.id. \\ \hline
+4 & rating & INT & No & & Numerical rating (1-5). \\ \hline
+5 & review\_text & TEXT & Yes & & Written feedback content. \\ \hline
+6 & created\_at & DATETIME & No & & Timestamp of the review. \\ \hline
+\end{tabular}
+\caption{Reviews Table Design}
+\end{table}
+
+\textbf{6. Table: refund\_tickets} \\
+Description: Manages refund requests and tracks their resolution status.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|l|l|c|l|p{4cm}|}
+\hline
+\textbf{Index} & \textbf{Fieldname} & \textbf{Datatype} & \textbf{Nullable} & \textbf{Constraint} & \textbf{Description} \\ \hline
+1 & id & VARCHAR(10) & No & PK, Unique & Unique identifier for the ticket. \\ \hline
+2 & order\_id & VARCHAR(10) & No & FK & Link to orders.id. \\ \hline
+3 & reason & TEXT & No & & Reason provided by customer. \\ \hline
+4 & status & VARCHAR(20) & No & & Status (Pending, Approved, Rejected). \\ \hline
+5 & created\_at & DATETIME & No & & Timestamp of request submission. \\ \hline
+6 & resolved\_at & DATETIME & Yes & & Timestamp of resolution. \\ \hline
+\end{tabular}
+\caption{Refund\_Tickets Table Design}
+\end{table}
+
 \subsection{User Interface Design}
 \subsubsection{Interface Prototype}
 \subsubsection{Interface Specification}
