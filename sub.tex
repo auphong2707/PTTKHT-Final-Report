@@ -602,6 +602,76 @@ They are grouped by actor roles, following the same layout as the G8 System repo
 
 \subsection{Non-functional Requirements}
 
+Non-functional requirements define the quality attributes and operational constraints of the Laptop Store Management System. Unlike functional requirements, which describe what the system does, non-functional requirements specify how the system performs its functions and ensure reliability, security, and usability in real-world deployment. The following non-functional requirements are derived from business expectations, technical constraints, and industry best practices.
+
+\subsubsection{Performance Requirements}
+\begin{itemize}
+    \item The system shall respond to standard user interactions (page navigation, product search, add-to-cart actions) within \textbf{2 seconds} under normal operating conditions.
+    \item Product search and filtering operations shall return results within \textbf{1 second} for up to 10,000 laptop records.
+    \item The system shall support at least \textbf{100 concurrent users} without significant degradation in response time.
+    \item Checkout and order placement operations shall complete within \textbf{3 seconds}, excluding external payment gateway processing time.
+\end{itemize}
+
+\subsubsection{Security Requirements}
+\begin{itemize}
+    \item All data transmitted between client and server shall be encrypted using \textbf{HTTPS (TLS)}.
+    \item The system shall implement secure authentication using Firebase Authentication, ensuring that plaintext passwords are never stored on the application server.
+    \item Role-based access control (RBAC) shall restrict administrative functions (inventory management, order status updates, refund resolution) to authorized administrators only.
+    \item The system shall prevent common web vulnerabilities, including SQL Injection, Cross-Site Scripting (XSS), and Cross-Site Request Forgery (CSRF).
+    \item User sessions shall expire automatically after a period of inactivity to reduce the risk of unauthorized access.
+\end{itemize}
+
+\subsubsection{Reliability and Availability}
+\begin{itemize}
+    \item The system shall maintain an availability level of at least \textbf{99\%} during normal business hours.
+    \item Critical operations such as order placement and payment confirmation shall be transaction-safe and atomic.
+    \item The system shall perform automatic data backups on a daily basis to prevent data loss.
+    \item In the event of partial system failure (e.g., payment gateway downtime), the system shall preserve order data and allow retry or alternative payment methods.
+\end{itemize}
+
+\subsubsection{Scalability}
+\begin{itemize}
+    \item The system architecture shall support horizontal scaling of the backend services to handle increased traffic.
+    \item The database design shall allow growth in product catalog size and transaction volume without requiring schema redesign.
+    \item Caching mechanisms (e.g., Redis) shall be used to reduce database load for frequently accessed data such as shopping carts and product listings.
+\end{itemize}
+
+\subsubsection{Usability}
+\begin{itemize}
+    \item The user interface shall be intuitive and accessible to users with basic computer skills.
+    \item The system shall support responsive design to ensure usability on desktops, tablets, and mobile devices.
+    \item Error messages shall be clear, user-friendly, and displayed in Vietnamese.
+    \item Common user tasks (searching products, placing orders, requesting refunds) shall require minimal steps.
+\end{itemize}
+
+\subsubsection{Maintainability}
+\begin{itemize}
+    \item The system shall follow modular design principles (MVC architecture) to simplify maintenance and future enhancements.
+    \item Source code shall be well-documented and follow consistent coding standards.
+    \item The system shall allow new features (e.g., loyalty programs, recommendation engines) to be added with minimal impact on existing components.
+\end{itemize}
+
+\subsubsection{Compatibility}
+\begin{itemize}
+    \item The system shall support modern web browsers including Google Chrome, Mozilla Firefox, Microsoft Edge, and Safari.
+    \item No client-side installation shall be required; the system shall be fully accessible via standard web browsers.
+\end{itemize}
+
+\subsubsection{Legal and Regulatory Compliance}
+\begin{itemize}
+    \item The system shall comply with Vietnamese regulations related to e-commerce, consumer protection, and personal data privacy.
+    \item Customer personal data shall be collected only for legitimate business purposes and stored securely.
+    \item Transaction records shall be retained to support accounting and tax reporting requirements.
+\end{itemize}
+
+\subsubsection{Operational Constraints}
+\begin{itemize}
+    \item The system shall operate under limited infrastructure resources typical of small to medium-sized retailers.
+    \item Deployment shall be feasible on low-cost cloud hosting platforms.
+    \item The system shall be usable without continuous technical supervision after deployment.
+\end{itemize}
+
+
 \section{Design}
 
 % =====================================================
