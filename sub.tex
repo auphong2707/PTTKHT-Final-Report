@@ -1838,8 +1838,29 @@ Description: Manages refund requests and tracks their resolution status.
 \subsubsection{Screen Flow}
 
 \section{Conclusion and Future Work}
+
 \subsection{Conclusion}
+This report presented the analysis and design of the \textbf{Laptop Store Management System}, an online retail system supporting both customer-facing and administrative operations. The system was developed based on identified business needs and feasibility analysis, ensuring that the proposed solution is practical, scalable, and aligned with real-world e-commerce requirements.
+
+The analysis phase employed standard system analysis techniques, including \textbf{use case diagrams, detailed use case specifications, activity diagrams, and sequence diagrams}. These artifacts describe the complete interaction flow between users and the system. Customers are able to browse and filter laptops, manage shopping carts, place orders, make payments via multiple methods, track order status, submit product reviews, and request refunds. Administrators can manage inventory, monitor business metrics, update order statuses, and resolve refund tickets.
+
+In the design phase, the system architecture was defined using the \textbf{Model--View--Controller (MVC)} pattern to ensure a clear separation of concerns. The report provided detailed package diagrams and class specifications for the Model, View, and Controller layers. Core domain entities such as users, laptops, carts, orders, payments, reviews, and refund tickets were clearly defined. Additionally, a relational database schema was designed to maintain data integrity and support transactional consistency. Overall, this report provides a comprehensive blueprint for implementing a robust and maintainable laptop store management system.
+
 \subsection{Future Work}
+Although the current design satisfies the core functional and non-functional requirements, several enhancements can be considered to improve the system’s capabilities and long-term value.
+
+First, system security can be strengthened by enforcing stricter authentication and authorization mechanisms, improving session management, and adding advanced protection against common web attacks. Logging and auditing features can also be expanded to support system monitoring and compliance requirements.
+
+Second, the payment module can be extended to support additional payment gateways and improved transaction handling. Features such as webhook verification, retry mechanisms, and idempotent payment processing would increase reliability and reduce the risk of payment inconsistencies.
+
+Third, order fulfillment functionality can be enhanced by integrating shipping carrier services, providing real-time delivery tracking, and automatically notifying customers of order status changes via email or SMS. These features would significantly improve customer experience and transparency.
+
+In addition, refund processing can be improved by introducing configurable refund policies, time-based constraints, and richer communication between customers and administrators. Supporting attachments or evidence for refund requests would also improve dispute resolution.
+
+From a business perspective, recommendation and personalization features such as related products, best-selling laptops, or personalized suggestions based on user behavior can be implemented to increase sales and customer engagement. The admin dashboard can also be expanded with more advanced analytics, including revenue trends, conversion rates, and refund statistics.
+
+Finally, future development can focus on performance optimization and user experience improvements. This includes applying caching strategies, optimizing database queries, enhancing responsive design, and improving accessibility. Thanks to the modular MVC architecture, these enhancements can be implemented incrementally without major changes to the existing system structure.
+
 
 \section*{References}
 
