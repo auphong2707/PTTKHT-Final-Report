@@ -1,0 +1,141 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.0.3 Chrome/140.0.7339.249 Electron/38.7.0 Safari/537.36" version="29.0.3">
+  <diagram name="Page-1" id="-NZjtgihjMgdIikIpjTV">
+    <mxGraphModel dx="1603" dy="963" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="LulD-Pbb4aT0ncsARRIH-2" value="Customer" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};participant=umlActor;verticalAlign=bottom;labelPosition=center;verticalLabelPosition=top;align=center;size=65;" parent="1" vertex="1">
+          <mxGeometry x="20" y="20" width="35" height="640" as="geometry" />
+        </mxCell>
+        <mxCell id="LulD-Pbb4aT0ncsARRIH-3" value="" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=0;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};participant=umlBoundary;size=65;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="190" y="20" width="77" height="640" as="geometry" />
+        </mxCell>
+        <mxCell id="LulD-Pbb4aT0ncsARRIH-4" value="" style="points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0}" parent="LulD-Pbb4aT0ncsARRIH-3" vertex="1">
+          <mxGeometry x="33.5" y="101" width="10" height="424" as="geometry" />
+        </mxCell>
+        <mxCell id="LulD-Pbb4aT0ncsARRIH-3-label" value="&lt;u&gt;&lt;b&gt;:ProductPageView&lt;/b&gt;&lt;/u&gt;" style="text;html=1;align=center;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="153.5" y="93" width="150" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="LulD-Pbb4aT0ncsARRIH-5" value="" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=0;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};participant=umlControl;size=80;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="450" y="10" width="76" height="650" as="geometry" />
+        </mxCell>
+        <mxCell id="LulD-Pbb4aT0ncsARRIH-5-label" value="&lt;u&gt;&lt;b&gt;:CartController&lt;/b&gt;&lt;/u&gt;" style="text;html=1;align=center;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="414" y="93" width="150" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="LulD-Pbb4aT0ncsARRIH-7" value="" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=0;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};participant=umlEntity;size=80;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="660" y="10" width="80" height="650" as="geometry" />
+        </mxCell>
+        <mxCell id="LulD-Pbb4aT0ncsARRIH-7-label" value="&lt;u&gt;&lt;b&gt;:Orders&lt;/b&gt;&lt;/u&gt;" style="text;html=1;align=center;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="625" y="93" width="150" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="LulD-Pbb4aT0ncsARRIH-10" value="addToCart(laptopID)" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;fontSize=13;" parent="1" source="LulD-Pbb4aT0ncsARRIH-2" target="LulD-Pbb4aT0ncsARRIH-4" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="210" y="129" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LulD-Pbb4aT0ncsARRIH-11" value="1" style="ellipse;aspect=fixed;fillColor=#000000;align=center;fontColor=#FFFFFF;" parent="LulD-Pbb4aT0ncsARRIH-10" vertex="1">
+          <mxGeometry width="14" height="14" relative="1" as="geometry">
+            <mxPoint x="-100" y="-8" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LulD-Pbb4aT0ncsARRIH-12" value="&lt;&lt;create&gt;&gt; CartController" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;fontSize=13;" parent="1" source="LulD-Pbb4aT0ncsARRIH-4" target="LulD-Pbb4aT0ncsARRIH-6" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="447" y="183" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LulD-Pbb4aT0ncsARRIH-13" value="2" style="ellipse;aspect=fixed;fillColor=#000000;align=center;fontColor=#FFFFFF;" parent="LulD-Pbb4aT0ncsARRIH-12" vertex="1">
+          <mxGeometry width="14" height="14" relative="1" as="geometry">
+            <mxPoint x="-134" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LulD-Pbb4aT0ncsARRIH-14" value="checkLoginSession()" style="curved=1;endArrow=block;rounded=0;" parent="1" source="LulD-Pbb4aT0ncsARRIH-6" target="LulD-Pbb4aT0ncsARRIH-6" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="629" y="237" />
+              <mxPoint x="640" y="250" />
+              <mxPoint x="629" y="267" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LulD-Pbb4aT0ncsARRIH-15" value="3" style="ellipse;aspect=fixed;fillColor=#000000;align=center;fontColor=#FFFFFF;" parent="LulD-Pbb4aT0ncsARRIH-14" vertex="1">
+          <mxGeometry width="14" height="14" relative="1" as="geometry">
+            <mxPoint x="-57" y="-22" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LulD-Pbb4aT0ncsARRIH-18" value="success" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;fontSize=13;" parent="1" source="LulD-Pbb4aT0ncsARRIH-7" target="LulD-Pbb4aT0ncsARRIH-6" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="570" y="375" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LulD-Pbb4aT0ncsARRIH-19" value="5" style="ellipse;aspect=fixed;fillColor=#000000;align=center;fontColor=#FFFFFF;" parent="LulD-Pbb4aT0ncsARRIH-18" vertex="1">
+          <mxGeometry width="14" height="14" relative="1" as="geometry">
+            <mxPoint x="96" y="-5" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LulD-Pbb4aT0ncsARRIH-22" value="&lt;&lt;destroy&gt;&gt; closeCartSession()" style="curved=1;endArrow=block;rounded=0;" parent="1" source="LulD-Pbb4aT0ncsARRIH-6" target="LulD-Pbb4aT0ncsARRIH-6" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="629" y="483" />
+              <mxPoint x="660" y="500" />
+              <mxPoint x="629" y="513" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LulD-Pbb4aT0ncsARRIH-23" value="7" style="ellipse;aspect=fixed;fillColor=#000000;align=center;fontColor=#FFFFFF;" parent="LulD-Pbb4aT0ncsARRIH-22" vertex="1">
+          <mxGeometry width="14" height="14" relative="1" as="geometry">
+            <mxPoint x="-57" y="-22" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LulD-Pbb4aT0ncsARRIH-24" value="If product is out of stock → display &quot;Out of stock&quot; message.&#xa;If system error occurs → display &quot;Unable to add to cart. Please try again later.&quot;" style="fillColor=#ffff88;strokeColor=#9E916F;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="280" y="533" width="548" height="67" as="geometry" />
+        </mxCell>
+        <mxCell id="LulD-Pbb4aT0ncsARRIH-25" value="Selected laptop is successfully added to the customer&#39;s cart." style="fillColor=#ffff88;strokeColor=#9E916F;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="10" y="600" width="818" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="LulD-Pbb4aT0ncsARRIH-6" value="" style="points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0}" parent="1" vertex="1">
+          <mxGeometry x="484" y="170" width="10" height="350" as="geometry" />
+        </mxCell>
+        <mxCell id="qUM0R73oJMdWKUou01D6-4" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="692.5" y="310" width="15" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="LulD-Pbb4aT0ncsARRIH-8" value="" style="points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0}" parent="qUM0R73oJMdWKUou01D6-4" vertex="1">
+          <mxGeometry x="5" width="10" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="LulD-Pbb4aT0ncsARRIH-9" value="" style="points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0}" parent="qUM0R73oJMdWKUou01D6-4" vertex="1">
+          <mxGeometry width="10" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="LulD-Pbb4aT0ncsARRIH-16" value="insertCartItem(userID, laptopID)" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;fontSize=13;" parent="1" source="LulD-Pbb4aT0ncsARRIH-6" target="LulD-Pbb4aT0ncsARRIH-9" edge="1">
+          <mxGeometry x="-0.0327" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="640" y="320" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LulD-Pbb4aT0ncsARRIH-17" value="4" style="ellipse;aspect=fixed;fillColor=#000000;align=center;fontColor=#FFFFFF;" parent="LulD-Pbb4aT0ncsARRIH-16" vertex="1">
+          <mxGeometry width="14" height="14" relative="1" as="geometry">
+            <mxPoint x="-109" y="-8" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LulD-Pbb4aT0ncsARRIH-20" value="show &quot;Item Added&quot; popup" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;fontSize=13;" parent="1" source="LulD-Pbb4aT0ncsARRIH-6" target="LulD-Pbb4aT0ncsARRIH-4" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="450" y="429" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LulD-Pbb4aT0ncsARRIH-21" value="6" style="ellipse;aspect=fixed;fillColor=#000000;align=center;fontColor=#FFFFFF;" parent="LulD-Pbb4aT0ncsARRIH-20" vertex="1">
+          <mxGeometry width="14" height="14" relative="1" as="geometry">
+            <mxPoint x="120" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

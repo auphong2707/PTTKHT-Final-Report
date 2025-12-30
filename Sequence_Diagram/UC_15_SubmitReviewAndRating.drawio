@@ -1,0 +1,134 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.0.3 Chrome/140.0.7339.249 Electron/38.7.0 Safari/537.36" version="29.0.3">
+  <diagram name="Trang-1" id="R85ZzYazw-4CIzODfi0F">
+    <mxGraphModel dx="2084" dy="1252" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="mjDfSqdmqMP3f8DGTvSp-2" value="" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=0;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};participant=umlBoundary;size=65;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="726.5" y="600" width="79" height="635" as="geometry" />
+        </mxCell>
+        <mxCell id="zZCH5zFwjV7hz7PEAGL5-1" value="" style="points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0}" vertex="1" parent="1">
+          <mxGeometry x="761" y="700" width="10" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="mjDfSqdmqMP3f8DGTvSp-3" value="" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=0;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};participant=umlControl;size=80;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="965" y="585.5" width="70" height="635" as="geometry" />
+        </mxCell>
+        <mxCell id="mjDfSqdmqMP3f8DGTvSp-5" value="" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=0;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};participant=umlEntity;size=65;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="1250" y="600" width="70" height="635" as="geometry" />
+        </mxCell>
+        <mxCell id="mjDfSqdmqMP3f8DGTvSp-4" value="" style="points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0}" parent="1" vertex="1">
+          <mxGeometry x="995" y="827" width="10" height="276" as="geometry" />
+        </mxCell>
+        <mxCell id="mjDfSqdmqMP3f8DGTvSp-6" value="" style="points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0}" parent="1" vertex="1">
+          <mxGeometry x="1285" y="881" width="10" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="mjDfSqdmqMP3f8DGTvSp-7" value="" style="points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0}" parent="1" vertex="1">
+          <mxGeometry x="1280" y="881" width="10" height="59" as="geometry" />
+        </mxCell>
+        <mxCell id="mjDfSqdmqMP3f8DGTvSp-1" value="Customer" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};participant=umlActor;verticalAlign=bottom;labelPosition=center;verticalLabelPosition=top;align=center;size=65;" parent="1" vertex="1">
+          <mxGeometry x="500" y="610" width="35" height="635" as="geometry" />
+        </mxCell>
+        <mxCell id="mjDfSqdmqMP3f8DGTvSp-2-label" value="&lt;u&gt;&lt;b&gt;:ReviewPageView&lt;/b&gt;&lt;/u&gt;" style="text;html=1;align=center;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="691" y="670" width="150" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="mjDfSqdmqMP3f8DGTvSp-3-label" value="&lt;u&gt;&lt;b&gt;:ReviewController&lt;/b&gt;&lt;/u&gt;" style="text;html=1;align=center;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="920" y="670" width="150" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="mjDfSqdmqMP3f8DGTvSp-5-label" value="&lt;u&gt;&lt;b&gt;:Reviews&lt;/b&gt;&lt;/u&gt;" style="text;html=1;align=center;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="1210" y="675" width="150" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="mjDfSqdmqMP3f8DGTvSp-8" value="enter rating &amp; write comment" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;fontSize=13;" parent="1" source="mjDfSqdmqMP3f8DGTvSp-1" target="zZCH5zFwjV7hz7PEAGL5-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="634" y="719" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mjDfSqdmqMP3f8DGTvSp-9" value="1" style="ellipse;aspect=fixed;fillColor=#000000;align=center;fontColor=#FFFFFF;" parent="mjDfSqdmqMP3f8DGTvSp-8" vertex="1">
+          <mxGeometry width="14" height="14" relative="1" as="geometry">
+            <mxPoint x="-129" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mjDfSqdmqMP3f8DGTvSp-10" value="press Submit button" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;fontSize=13;" parent="1" source="mjDfSqdmqMP3f8DGTvSp-1" target="zZCH5zFwjV7hz7PEAGL5-1" edge="1">
+          <mxGeometry x="-0.002" relative="1" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="634" y="773" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mjDfSqdmqMP3f8DGTvSp-11" value="2" style="ellipse;aspect=fixed;fillColor=#000000;align=center;fontColor=#FFFFFF;" parent="mjDfSqdmqMP3f8DGTvSp-10" vertex="1">
+          <mxGeometry width="14" height="14" relative="1" as="geometry">
+            <mxPoint x="-129" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mjDfSqdmqMP3f8DGTvSp-12" value="&lt;&lt;create&gt;&gt; ReviewController" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;fontSize=13;" parent="1" source="zZCH5zFwjV7hz7PEAGL5-1" target="mjDfSqdmqMP3f8DGTvSp-4" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="913" y="827" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mjDfSqdmqMP3f8DGTvSp-13" value="3" style="ellipse;aspect=fixed;fillColor=#000000;align=center;fontColor=#FFFFFF;" parent="mjDfSqdmqMP3f8DGTvSp-12" vertex="1">
+          <mxGeometry width="14" height="14" relative="1" as="geometry">
+            <mxPoint x="-122" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mjDfSqdmqMP3f8DGTvSp-14" value="validateAndStoreReview(rating, comment)" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;endArrow=block;fontSize=13;" parent="1" source="mjDfSqdmqMP3f8DGTvSp-4" target="mjDfSqdmqMP3f8DGTvSp-6" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1241" y="881" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mjDfSqdmqMP3f8DGTvSp-15" value="4" style="ellipse;aspect=fixed;fillColor=#000000;align=center;fontColor=#FFFFFF;" parent="mjDfSqdmqMP3f8DGTvSp-14" vertex="1">
+          <mxGeometry width="14" height="14" relative="1" as="geometry">
+            <mxPoint x="-150" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mjDfSqdmqMP3f8DGTvSp-16" value="reviewStored" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;fontSize=13;" parent="1" source="mjDfSqdmqMP3f8DGTvSp-5" target="mjDfSqdmqMP3f8DGTvSp-4" edge="1">
+          <mxGeometry x="0.0018" relative="1" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="1244" y="935" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mjDfSqdmqMP3f8DGTvSp-17" value="5" style="ellipse;aspect=fixed;fillColor=#000000;align=center;fontColor=#FFFFFF;" parent="mjDfSqdmqMP3f8DGTvSp-16" vertex="1">
+          <mxGeometry width="14" height="14" relative="1" as="geometry">
+            <mxPoint x="131" y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mjDfSqdmqMP3f8DGTvSp-18" value="display &quot;Thank you for your feedback!&quot;" style="verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;dashPattern=2 3;endArrow=block;fontSize=14;" parent="1" source="mjDfSqdmqMP3f8DGTvSp-4" target="zZCH5zFwjV7hz7PEAGL5-1" edge="1">
+          <mxGeometry x="0.1091" y="-19" relative="1" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="776" y="989" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mjDfSqdmqMP3f8DGTvSp-19" value="6" style="ellipse;aspect=fixed;fillColor=#000000;align=center;fontColor=#FFFFFF;" parent="mjDfSqdmqMP3f8DGTvSp-18" vertex="1">
+          <mxGeometry width="14" height="14" relative="1" as="geometry">
+            <mxPoint x="105" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mjDfSqdmqMP3f8DGTvSp-20" value="&lt;&lt;destroy&gt;&gt; closeReviewSession()" style="curved=1;endArrow=block;rounded=0;fontSize=13;" parent="1" source="mjDfSqdmqMP3f8DGTvSp-4" target="mjDfSqdmqMP3f8DGTvSp-4" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1107" y="1043" />
+              <mxPoint x="1107" y="1073" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mjDfSqdmqMP3f8DGTvSp-21" value="7" style="ellipse;aspect=fixed;fillColor=#000000;align=center;fontColor=#FFFFFF;" parent="mjDfSqdmqMP3f8DGTvSp-20" vertex="1">
+          <mxGeometry width="14" height="14" relative="1" as="geometry">
+            <mxPoint x="-57" y="-22" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mjDfSqdmqMP3f8DGTvSp-22" value="If review incomplete → show &quot;You haven&#39;t finished the review&quot;.&#xa;If system error → show &quot;Unable to submit review and rating. Please try again later.&quot;" style="fillColor=#ffff88;strokeColor=#9E916F;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="680" y="1093" width="630" height="67" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
