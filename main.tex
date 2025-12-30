@@ -2563,7 +2563,180 @@ Description: Manages refund requests and tracks their resolution status.
 
 \subsection{User Interface Design}
 \subsubsection{Interface Prototype}
+
 \subsubsection{Interface Specification}
+
+\textbf{1. Homepage} \\
+\begin{tabular}{|l|p{10cm}|}
+\hline
+\textbf{Interface} & \textbf{Homepage} \\ \hline
+Content & Interface for guest users. Click on the User icon to select “Login” or “Create an Account”. \\ \hline
+Condition & None \\ \hline
+Complexity & Simple \\ \hline
+\end{tabular}
+
+\textbf{2. Register Page} \\
+\begin{tabular}{|l|p{10cm}|}
+\hline
+\textbf{Interface} & \textbf{Register Page} \\ \hline
+Content & Interface for registering new accounts. \\ \hline
+Condition & User select “Create an Account” on Homepage \\ \hline
+Complexity & Simple \\ \hline
+\end{tabular}
+
+\textbf{3. Login Page} \\
+\begin{tabular}{|l|p{10cm}|}
+\hline
+\textbf{Interface} & \textbf{Login Page} \\ \hline
+Content & Interface for logging in to accounts \\ \hline
+Condition & Users click on the User icon, then select “Login” on Homepage, Redirect after registering a new account \\ \hline
+Complexity & Simple \\ \hline
+\end{tabular}
+
+\textbf{4. Logout} \\
+\begin{tabular}{|l|p{10cm}|}
+\hline
+\textbf{Interface} & \textbf{Logout} \\ \hline
+Content & Interface for logging out from accounts \\ \hline
+Condition & Users click on the User icon, then select Logout after logging in successfully \\ \hline
+Complexity & Simple \\ \hline
+\end{tabular}
+
+\textbf{5. Update Information} \\
+\begin{tabular}{|l|p{10cm}|}
+\hline
+\textbf{Interface} & \textbf{Update Information} \\ \hline
+Content & Interface for updating customers’ information \\ \hline
+Condition & Customers click on the User icon, then select “Account Information” \\ \hline
+Complexity & Simple \\ \hline
+\end{tabular}
+
+\textbf{6. View All Products} \\
+\begin{tabular}{|l|p{10cm}|}
+\hline
+\textbf{Interface} & \textbf{View All Products} \\ \hline
+Content & Interface for customers to view all products \\ \hline
+Condition & Customers click on the “See All Products” button \\ \hline
+Complexity & Simple \\ \hline
+\end{tabular}
+
+\textbf{7. View Product’s Detail} \\
+\begin{tabular}{|l|p{10cm}|}
+\hline
+\textbf{Interface} & \textbf{View Product’s Detail} \\ \hline
+Content & Interface for customer to view a product’s detail \\ \hline
+Condition & After viewing all products successfully, customers click on a product, Customers directly click on a product in Homepage \\ \hline
+Complexity & Simple \\ \hline
+\end{tabular}
+
+\textbf{8. View Shopping Cart} \\
+\begin{tabular}{|l|p{10cm}|}
+\hline
+\textbf{Interface} & \textbf{View Shopping Cart} \\ \hline
+Content & Interface for viewing the customers’ shopping cart \\ \hline
+Condition & Customers click on the Cart icon in Homepage \\ \hline
+Complexity & Simple \\ \hline
+\end{tabular}
+
+\textbf{9. View An Order} \\
+\begin{tabular}{|l|p{10cm}|}
+\hline
+\textbf{Interface} & \textbf{View An Order} \\ \hline
+Content & Interface for viewing a customers’ order \\ \hline
+Condition & None \\ \hline
+Complexity & Simple \\ \hline
+\end{tabular}
+
+\textbf{10. View Order History} \\
+\begin{tabular}{|l|p{10cm}|}
+\hline
+\textbf{Interface} & \textbf{View Order History} \\ \hline
+Content & Interface for viewing the customers’ order history \\ \hline
+Condition & Customers click on the User icon, then select “My Orders” \\ \hline
+Complexity & Simple \\ \hline
+\end{tabular}
+
+\textbf{11. View Dashboards} \\
+\begin{tabular}{|l|p{10cm}|}
+\hline
+\textbf{Interface} & \textbf{View dashboards} \\ \hline
+Content & Interface for admin to view dashboards \\ \hline
+Condition & Admins click on the User icon, then select “Dashboard” \\ \hline
+Complexity & Simple \\ \hline
+\end{tabular}
+
+\textbf{12. View Inventory} \\
+\begin{tabular}{|l|p{10cm}|}
+\hline
+\textbf{Interface} & \textbf{View Inventory} \\ \hline
+Content & Interface for admin to view the inventory \\ \hline
+Condition & Admins click on the User icon, then select “Inventory” \\ \hline
+Complexity & Simple \\ \hline
+\end{tabular}
+
+\textbf{13. Delete Item} \\
+\begin{tabular}{|l|p{10cm}|}
+\hline
+\textbf{Interface} & \textbf{Delete Item} \\ \hline
+Content & Interface for admin to delete an item \\ \hline
+Condition & After viewing the inventory, admins click on the Delete icon of an item \\ \hline
+Complexity & Simple \\ \hline
+\end{tabular}
+
+\textbf{14. Add Product} \\
+\begin{tabular}{|l|p{10cm}|}
+\hline
+\textbf{Interface} & \textbf{Add Product} \\ \hline
+Content & Interface for admin to add a product \\ \hline
+Condition & Admins click on the User icon, then select “Add Product” \\ \hline
+Complexity & Simple \\ \hline
+\end{tabular}
+
+\textbf{15. View Refund Request} \\
+\begin{tabular}{|l|p{10cm}|}
+\hline
+\textbf{Interface} & \textbf{View Refund Request} \\ \hline
+Content & Interface for admin to view all refund requests \\ \hline
+Condition & Admins click on the User icon, then select “Refund Request” \\ \hline
+Complexity & Simple \\ \hline
+\end{tabular}
+
+\textbf{16. View Stock Alerts} \\
+\begin{tabular}{|l|p{10cm}|}
+\hline
+\textbf{Interface} & \textbf{View Stock Alerts} \\ \hline
+Content & Interface for admin to view the stock alerts \\ \hline
+Condition & Admins click on the User icon, then select “Stock Alerts” \\ \hline
+Complexity & Simple \\ \hline
+\end{tabular}
+
+\textbf{17. Edit Product} \\
+\begin{tabular}{|l|p{10cm}|}
+\hline
+\textbf{Interface} & \textbf{Edit Product} \\ \hline
+Content & Interface for admin to edit a product \\ \hline
+Condition & After viewing the inventory, admins click on a product to edit \\ \hline
+Complexity & Simple \\ \hline
+\end{tabular}
+
+\textbf{18. View Orders (Admin)} \\
+\begin{tabular}{|l|p{10cm}|}
+\hline
+\textbf{Interface} & \textbf{View Orders (Admin)} \\ \hline
+Content & Interface for admin to view all orders \\ \hline
+Condition & Admins click on the User icon, then select “Orders” \\ \hline
+Complexity & Simple \\ \hline
+\end{tabular}
+
+\textbf{19. Edit Product} \\
+\begin{tabular}{|l|p{10cm}|}
+\hline
+\textbf{Interface} & \textbf{Edit Product} \\ \hline
+Content & Interface for admin to edit a product \\ \hline
+Condition & After viewing the inventory, admins click on a product to edit \\ \hline
+Complexity & Simple \\ \hline
+\end{tabular}
+
 \subsubsection{Screen Flow}
 
 \section{Conclusion and Future Work}
