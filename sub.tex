@@ -124,36 +124,843 @@
 \section{Introduction}
 
 \subsection{Problem Definition}
+We are working on a software development project based on a real business requirement from our customer. Our customer operates a retail laptop shop where most daily operations are still handled manually. In recent years, the shop has depended heavily on spreadsheets, handwritten invoices, and personal communication between sales staff and the manager. This approach has led to several recurring problems:
+
+\begin{itemize}
+    \item \textbf{Inventory Mismanagement:} Product quantities are updated manually, leading to frequent discrepancies between recorded and actual stock levels. As a result, the shop sometimes accepts orders for out-of-stock items or fails to restock high-demand models in time.
+    \item \textbf{Slow Order Processing:} Staff must manually check prices, confirm stock availability, and record sales data. During peak hours, this creates long wait times, pricing errors, and decreased customer satisfaction.
+    \item \textbf{Lack of Data Visibility:} The absence of a centralized system prevents the manager from tracking sales performance, identifying best-selling models, or generating analytical reports for data-driven decision-making.
+    \item \textbf{Inefficient Refund and Warranty Handling:} Refund and exchange requests are tracked through paper notes or chat messages, causing missing records and inconsistent follow-up.
+    \item \textbf{Limited Online Presence:} The store mainly serves walk-in customers and promotes products via social media, without an integrated online catalog or order management platform to reach a broader audience.
+\end{itemize}
+
+These issues have collectively reduced operational efficiency, caused customer dissatisfaction, and limited the store’s ability to scale in an increasingly competitive retail environment.
+
 \subsection{Problem Solving}
 
+To address these issues, the customer has commissioned our development team to design and implement a \textbf{web-based Laptop Store Management System}---a centralized digital platform that streamlines every core aspect of store operations.
+
+Although the customer considered alternative solutions such as Excel-based management, commercial POS software, and third-party e-commerce platforms (e.g., Sapo, Haravan, or Shopify), these options were found unsuitable for several reasons:
+
+\begin{itemize}
+    \item \textbf{Limited Customization:} Off-the-shelf systems are generic and lack support for laptop-specific features such as hardware specification filters (CPU, RAM, storage) or model variants.
+    \item \textbf{High Cost:} Commercial POS and ERP software typically charge recurring subscription fees, which are costly for small local retailers and often include unnecessary enterprise features.
+    \item \textbf{Poor Integration:} Many systems separate offline and online sales channels, leading to unsynchronized inventory and inconsistent data between platforms.
+    \item \textbf{Localization Limitations:} Foreign-built platforms lack complete Vietnamese language support and do not fully integrate with local payment services like VNPay or MoMo.
+\end{itemize}
+
+By hiring our team, the customer gains a \textbf{customized, cost-effective, and locally optimized solution} built to fit their business workflow. The proposed web application provides:
+
+\begin{itemize}
+    \item Real-time \textbf{inventory management} with automatic low-stock alerts.
+    \item Streamlined \textbf{order processing and payment} via both e-banking and cash-on-delivery.
+    \item A \textbf{customer-facing portal} with search, filtering, and review features.
+    \item A \textbf{refund and warranty ticket system} for efficient after-sales service.
+    \item A management \textbf{dashboard} with visual analytics and performance reports.
+\end{itemize}
+
+Ultimately, this project aims to transform the shop from manual, paper-based processes into a modern, data-driven retail operation. The system enhances accuracy, efficiency, and customer satisfaction while providing a scalable technological foundation for future online growth.
 
 \section{Planning}
 
 \subsection{Motivation}
+
+The Vietnamese laptop retail market has experienced substantial growth in recent years, driven by increasing demand from students, professionals, and businesses seeking portable computing solutions. According to market research, Vietnam's personal computer market, including laptops, has shown consistent year-over-year growth, with urban centers like Hanoi and Ho Chi Minh City leading consumption. This growth is accompanied by heightened competition among retailers, making operational efficiency and customer satisfaction critical differentiators.
+
+Traditional laptop retail operations in Vietnam often rely on manual processes and fragmented systems. Small to medium-sized retailers frequently manage inventory through spreadsheets, process orders using paper-based methods, and maintain customer records without centralized databases. These practices lead to several operational challenges:
+
+\begin{itemize}
+    \item \textbf{Inventory Mismanagement}: Without real-time tracking, retailers struggle to maintain optimal stock levels, resulting in lost sales opportunities or excess capital tied up in unsold inventory.
+    
+    \item \textbf{Inefficient Sales Operations}: Manual order processing increases transaction time, creates bottlenecks during peak periods, and introduces errors in pricing and order fulfillment.
+    
+    \item \textbf{Limited Customer Insights}: The absence of customer data analytics prevents retailers from understanding purchasing patterns, preferences, and opportunities for targeted marketing.
+    
+    \item \textbf{Poor After-Sales Support}: Manual handling of refund requests and customer complaints leads to delays, inconsistent service quality, and reduced customer loyalty.
+    
+    \item \textbf{Scalability Constraints}: As businesses grow, manual systems become increasingly unsustainable, limiting the retailer's ability to expand operations or open new locations.
+\end{itemize}
+
+The development of the \textbf{Laptop Shop Management Web Application} is driven by the need to address these challenges through digital transformation. By implementing this comprehensive web-based system, Vietnamese laptop retailers can automate routine tasks, gain real-time visibility into operations, and deliver a superior customer experience, providing a powerful tool to increase profitability, strengthen customer loyalty, and secure a significant competitive advantage in the market.
+
 \subsection{Initial System Request}
+
 \subsubsection{Business Need}
+
+The primary business need driving this project is the requirement for Vietnamese laptop retailers to modernize their operations and remain competitive in an increasingly digital marketplace. Specific business needs include:
+
+\begin{itemize}
+    \item \textbf{Operational Efficiency}: Retailers need to reduce the time and labor costs associated with manual inventory management, order processing, and administrative tasks. Current manual processes often require multiple staff members and consume significant working hours that could be better allocated to customer service and business development.
+    
+    \item \textbf{Data-Driven Decision Making}: Business owners and managers require access to real-time sales data, inventory metrics, and customer insights to make informed decisions about purchasing, pricing strategies, and marketing campaigns. Without centralized data collection and analysis, decision-making relies heavily on intuition rather than evidence.
+    
+    \item \textbf{Customer Experience Enhancement}: Modern Vietnamese consumers expect convenient online shopping experiences, including easy product search, detailed specifications, transparent pricing, and multiple payment options. Retailers must meet these expectations to attract and retain customers, particularly younger demographics who prefer digital channels.
+    
+    \item \textbf{Competitive Differentiation}: In a crowded market with numerous competitors, retailers need distinguishing features such as superior customer service, personalized recommendations, and efficient after-sales support. A well-designed management system can provide the foundation for these competitive advantages.
+    
+    \item \textbf{Business Scalability}: Retailers planning to expand their operations—whether through opening additional physical locations, increasing product varieties, or growing their customer base—require systems that can scale without proportional increases in administrative overhead or error rates.
+\end{itemize}
+
+Addressing these business needs through a comprehensive web application will enable retailers to operate more efficiently, serve customers more effectively, and position themselves for sustainable growth in the Vietnamese laptop retail market.
+
 \subsubsection{Business Requirements}
+
+Based on the identified business needs, the following business requirements define what the system must accomplish to deliver value to laptop retailers in Vietnam:
+
+\begin{itemize}
+    \item \textbf{Product Management}:
+    \begin{itemize}
+        \item The system must maintain a complete digital catalog of laptop inventory, including detailed specifications (brand, model, processor, RAM, storage, display size, graphics card, etc.).
+        \item Administrators must be able to add new products, update existing product information, adjust pricing in Vietnamese đồng (VND), and remove discontinued models.
+        \item The system must track real-time stock quantities and generate alerts when inventory levels fall below predetermined thresholds.
+    \end{itemize}
+    
+    \item \textbf{Customer-Facing Features}:
+    \begin{itemize}
+        \item Customers must be able to browse the product catalog, search by keywords, and filter by multiple criteria (brand, price range, specifications).
+        \item The system must provide detailed product pages with specifications, pricing, availability status, and customer reviews.
+        \item Customers must be able to add products to a shopping cart, modify quantities, and proceed to checkout with a streamlined process.
+        \item The system must support multiple payment methods common in Vietnam, including cash on delivery and electronic banking integration.
+        \item Customers must be able to create accounts, view order history, submit product reviews, and request refunds through a self-service portal.
+    \end{itemize}
+    
+    \item \textbf{Order Management}:
+    \begin{itemize}
+        \item The system must capture complete order information, including customer details, shipping address, ordered items, quantities, and total amounts in VND.
+        \item Administrators must be able to view all orders, update order statuses (pending, processing, shipped, delivered, cancelled), and manage the fulfillment process.
+        \item The system must automatically update inventory levels when orders are placed and provide order confirmation to customers.
+    \end{itemize}
+    
+    \item \textbf{Customer Service and Support}:
+    \begin{itemize}
+        \item The system must implement a refund ticket system allowing customers to submit return requests with reasons.
+        \item Administrators must be able to review refund requests, update ticket statuses, and track the resolution process.
+        \item The system must maintain a history of all customer interactions for reference and quality assurance.
+    \end{itemize}
+    
+    \item \textbf{Analytics and Reporting}:
+    \begin{itemize}
+        \item Administrators must have access to a dashboard displaying key performance indicators such as total sales (in VND), number of orders, pending transactions, and inventory alerts.
+        \item The system must generate sales reports, inventory summaries, and customer analytics to support business planning.
+    \end{itemize}
+    
+    \item \textbf{Security and Access Control}:
+    \begin{itemize}
+        \item The system must implement secure user authentication for both customers and administrators.
+        \item Access to administrative functions must be restricted to authorized personnel through role-based access control.
+        \item Customer personal information and transaction data must be protected according to data protection best practices.
+    \end{itemize}
+\end{itemize}
+
+These requirements form the foundation for system design and will guide development priorities throughout the project lifecycle.
+
 \subsubsection{Business Value}
+
+The implementation of the \textit{Laptop Shop Management Web Application} is expected to deliver substantial business value across multiple dimensions:
+
+\begin{itemize}
+    \item \textbf{Cost Reduction}:
+    \begin{itemize}
+        \item \textbf{Labor Savings}: Automation of inventory management, order processing, and reporting tasks will reduce the time staff spend on manual administrative work. For a typical small laptop shop in Vietnam, this could translate to savings of 2-3 staff hours per day, equivalent to approximately 1,000,000-1,500,000 VND per month in labor costs.
+        \item \textbf{Error Reduction}: Minimizing manual data entry reduces costly mistakes such as incorrect pricing, order fulfillment errors, or inventory discrepancies. Even preventing a few errors per month can save significant amounts in customer service costs and lost revenue.
+        \item \textbf{Inventory Optimization}: Better inventory tracking and stock alerts help prevent overstocking (which ties up capital) and understocking (which loses sales). Improved inventory turnover can free up working capital worth millions of VND.
+    \end{itemize}
+    
+    \item \textbf{Revenue Enhancement}:
+    \begin{itemize}
+        \item \textbf{Increased Sales Conversion}: A user-friendly online catalog with search and filter capabilities makes it easier for customers to find products, potentially increasing conversion rates by 10-15\%.
+        \item \textbf{Market Expansion}: Web-based sales capabilities allow retailers to reach customers beyond their physical location, expanding their addressable market across Vietnam.
+        \item \textbf{Customer Retention}: Better customer service through order tracking, review systems, and efficient refund processing increases customer loyalty and repeat purchase rates, which typically generate higher lifetime value.
+    \end{itemize}
+    
+    \item \textbf{Operational Efficiency}:
+    \begin{itemize}
+        \item \textbf{Faster Order Processing}: Automated order management reduces transaction time from 10-15 minutes (manual) to 2-3 minutes, allowing staff to serve more customers during peak periods.
+        \item \textbf{Real-Time Visibility}: Instant access to inventory levels, sales data, and order statuses enables quicker decision-making and more responsive operations.
+        \item \textbf{Scalability}: The system can handle increased transaction volumes without proportional increases in administrative burden, supporting business growth.
+    \end{itemize}
+    
+    \item \textbf{Competitive Advantages}:
+    \begin{itemize}
+        \item \textbf{Professional Image}: A modern web application enhances the retailer's brand perception, particularly among tech-savvy customers.
+        \item \textbf{Data-Driven Marketing}: Customer purchase history and analytics enable targeted promotions and personalized recommendations, increasing marketing effectiveness.
+        \item \textbf{Superior Customer Experience}: Features like order tracking, reviews, and self-service support differentiate the retailer from competitors still using traditional methods.
+    \end{itemize}
+    
+    \item \textbf{Strategic Benefits}:
+    \begin{itemize}
+        \item \textbf{Foundation for Growth}: The system provides the infrastructure necessary to scale operations, add new product lines, or open additional locations.
+        \item \textbf{Business Intelligence}: Accumulated data over time creates valuable insights into customer preferences, seasonal trends, and market opportunities.
+        \item \textbf{Adaptability}: A well-designed system can be updated with new features as business needs evolve, providing long-term value.
+    \end{itemize}
+\end{itemize}
+
+Quantitatively, a typical small to medium-sized laptop retailer in Vietnam with monthly revenues of 200-300 million VND could expect to see a 5-10\% improvement in operational efficiency and a 10-20\% increase in sales within the first year of implementation, resulting in additional net value of 20-50 million VND per month.
+
 \subsubsection{Special Issues or Constraints}
 
+The development and deployment of the \textit{Laptop Shop Management Web Application} must consider several special issues and constraints specific to the Vietnamese market context:
+
+\begin{itemize}
+    \item \textbf{Technical Constraints}:
+    \begin{itemize}
+        \item \textbf{Internet Infrastructure}: While internet connectivity in Vietnamese cities is generally reliable, rural areas may experience slower or less consistent connections. The application must be optimized for performance across varying network conditions.
+        \item \textbf{Device Compatibility}: Customers and staff may access the system using a wide range of devices, from modern smartphones to older desktop computers. The interface must be responsive and compatible with various screen sizes and browsers.
+        \item \textbf{Integration Limitations}: Many Vietnamese retailers use simple accounting software or point-of-sale systems. The new system must either integrate with these tools or provide clear migration paths for existing data.
+    \end{itemize}
+    
+    \item \textbf{Financial Constraints}:
+    \begin{itemize}
+        \item \textbf{Development Budget}: To maximize return on investment for our clients, development resources are strategically focused on core functionality. The scope must be carefully managed to deliver a lean, high-impact initial product within a defined budget.
+        \item \textbf{Deployment Costs}: Small retailers have limited budgets for IT infrastructure. Hosting and operational costs must be minimized, potentially through use of free-tier cloud services or cost-effective hosting options.
+        \item \textbf{Payment Gateway Fees}: Integration with Vietnamese electronic banking services (e.g., VNPay, MoMo) involves transaction fees that must be factored into the business model.
+    \end{itemize}
+    
+    \item \textbf{User Adoption Challenges}:
+    \begin{itemize}
+        \item \textbf{Digital Literacy}: Some retailers, particularly older business owners or staff, may have limited experience with web-based systems. The interface must be intuitive with minimal learning curve.
+        \item \textbf{Resistance to Change}: Staff accustomed to manual processes may resist adopting new digital workflows. Change management considerations must be incorporated into deployment planning.
+        \item \textbf{Training Requirements}: Even with an intuitive interface, users will require training materials and ongoing support, which must be developed as part of the project.
+    \end{itemize}
+    
+    \item \textbf{Market-Specific Issues}:
+    \begin{itemize}
+        \item \textbf{Cash-Dominant Culture}: Despite growing digital payment adoption, many Vietnamese customers still prefer cash transactions, particularly for high-value purchases like laptops. The system must support cash-on-delivery alongside electronic payments.
+        \item \textbf{Vietnamese Language Requirements}: All user interfaces, documentation, and error messages must be available in Vietnamese with proper character encoding and culturally appropriate terminology.
+        \item \textbf{Local Business Practices}: The system must accommodate Vietnamese retail customs, such as price negotiation expectations, warranty card management, and specific invoicing requirements.
+    \end{itemize}
+    
+    \item \textbf{Data and Privacy Considerations}:
+    \begin{itemize}
+        \item \textbf{Data Protection}: Customer personal information must be securely stored and handled in compliance with Vietnamese data protection regulations and emerging privacy standards.
+        \item \textbf{Data Backup}: Retailers cannot afford data loss. The system must implement robust backup strategies, even with limited budgets.
+        \item \textbf{Data Ownership}: Retailers must retain full ownership and control of their business data, with clear policies on data export and portability.
+    \end{itemize}
+    
+    \item \textbf{Project Timeline Constraints}:
+    \begin{itemize}
+        \item \textbf{Rapid Deployment Schedule:} To ensure a swift market entry and quick delivery of value, the project operates on an accelerated timeline. This limits the initial scope to core features, with a clear roadmap for future enhancements.
+        \item \textbf{Focused Team Availability:} To meet the aggressive schedule, the project team's development hours are highly concentrated and efficiently managed, requiring precise prioritization of tasks.
+    \end{itemize}
+\end{itemize}
+
+These constraints will inform design decisions, technology choices, and project planning throughout the development process. Solutions must balance ideal functionality with practical limitations to deliver a viable, usable system within the given constraints.
 
 \subsection{Feasibility Analysis}
 
 \subsubsection{Technical Feasibility}
+
+Technical feasibility examines whether the proposed system can be successfully developed and deployed using available technologies, skills, and infrastructure. The analysis considers several dimensions:
+
+\begin{itemize}
+    \item \textbf{Technology Stack Viability}:
+    \begin{itemize}
+        \item \textbf{Front-end (React)}: React is a mature, well-documented JavaScript library with extensive community support and Vietnamese language resources. The development team has prior experience with React, reducing the learning curve. React's component-based architecture is well-suited to building the required customer and admin interfaces.
+        \item \textbf{Back-end (Python/FastAPI)}: Python is widely taught in Vietnamese universities, and FastAPI is a modern, high-performance framework with excellent documentation. The team has demonstrated capability in Python development. FastAPI's automatic API documentation and type validation will accelerate development.
+        \item \textbf{Database (PostgreSQL)}: PostgreSQL is a reliable, open-source relational database suitable for managing structured data like product catalogs, orders, and customer information. Its Vietnamese community and free availability reduce barriers to adoption.
+        \item \textbf{Search Engine (Elasticsearch)}: While more complex, Elasticsearch is well-documented and provides powerful search capabilities essential for the product catalog. Its use is technically feasible with adequate learning time.
+        \item \textbf{Cache (Redis)}: Redis is straightforward to implement for shopping cart management and offers significant performance benefits with minimal complexity.
+        \item \textbf{Authentication (Firebase)}: Firebase Authentication simplifies implementing secure user management and is free for moderate usage levels, making it technically and economically feasible.
+    \end{itemize}
+    
+    \item \textbf{Development Team Capabilities}:
+    \begin{itemize}
+        \item The six-member team has completed relevant coursework in software engineering, database systems, and web development.
+        \item Team members can divide responsibilities across front-end, back-end, database, and testing domains based on individual strengths.
+    \end{itemize}
+    
+    \item \textbf{Infrastructure Requirements}:
+    \begin{itemize}
+        \item Development can occur on personal computers running Windows, macOS, or Linux, with no specialized hardware required.
+        \item Docker containerization ensures consistent development environments across team members' machines.
+        \item Cloud hosting options (e.g., Heroku, Railway, or Vietnamese providers like BKHOST) offer free or low-cost tiers suitable for deployment and testing.
+        \item Source code management via GitHub provides version control and collaboration capabilities.
+    \end{itemize}
+    
+    \item \textbf{Integration Complexity}:
+    \begin{itemize}
+        \item Integrating React front-end with FastAPI back-end is well-established practice with abundant examples and tutorials.
+        \item Firebase Authentication provides SDKs and clear integration paths for both client-side and server-side validation.
+        \item Payment gateway integration (e.g., VNPay, MoMo) is supported through documented APIs, though requiring additional testing for Vietnamese-specific flows.
+        \item Elasticsearch synchronization via Logstash introduces some complexity but is manageable with proper configuration.
+    \end{itemize}
+    
+    \item \textbf{Performance and Scalability}:
+    \begin{itemize}
+        \item The chosen architecture supports horizontal scaling if needed, though initial deployment will target single-retailer usage.
+        \item PostgreSQL and Redis are proven to handle transaction volumes far exceeding expected loads for typical Vietnamese laptop shops.
+        \item React's efficient rendering and FastAPI's asynchronous capabilities ensure responsive user interfaces even under moderate load.
+    \end{itemize}
+    
+    \item \textbf{Maintenance and Support}:
+    \begin{itemize}
+        \item All core technologies are actively maintained with long-term support commitments.
+        \item Open-source nature ensures continued availability and community-driven improvements.
+        \item Vietnamese developer communities exist for all major technologies, facilitating local support and knowledge sharing.
+    \end{itemize}
+\end{itemize}
+
+\textbf{Conclusion}: The project is technically feasible. The team possesses necessary skills, the technology stack is proven and appropriate, required infrastructure is accessible, and integration challenges are manageable. Risk mitigation strategies include incremental development, thorough testing, and leveraging prior project experience. No significant technical barriers exist that would prevent successful system development and deployment.
+
 \subsubsection{Operational Feasibility}
+
+Operational feasibility assesses whether the system will be effectively used by its intended users and whether it fits within the operational context of Vietnamese laptop retailers. The analysis examines user acceptance, organizational readiness, and operational impact:
+
+\begin{itemize}
+    \item \textbf{User Acceptance}:
+    \begin{itemize}
+        \item \textbf{Customer Perspective}: Vietnamese consumers increasingly expect online shopping capabilities for electronics purchases. The system's product search, detailed specifications, reviews, and multiple payment options align with modern customer expectations. User-friendly interfaces and Vietnamese language support will encourage adoption.
+        \item \textbf{Staff Perspective}: Retail staff may initially resist new digital workflows, particularly if they are accustomed to manual processes. However, the system's efficiency gains—such as faster order processing and automated inventory updates—will quickly demonstrate value. Training materials and intuitive design will reduce resistance.
+        \item \textbf{Management Perspective}: Business owners and managers will appreciate real-time dashboards, automated reporting, and data-driven insights. The system directly addresses pain points they experience with manual management, making adoption appealing once benefits are demonstrated.
+    \end{itemize}
+    
+    \item \textbf{Organizational Readiness}:
+    \begin{itemize}
+        \item \textbf{Business Process Alignment}: The system is designed around standard retail workflows (inventory management, sales processing, customer service) common in Vietnamese laptop shops. Minimal process reengineering is required, easing adoption.
+        \item \textbf{Staffing Requirements}: The system reduces, rather than increases, staffing needs for routine tasks. Existing staff can be reassigned from manual administrative work to customer service, business development, or other value-adding activities.
+        \item \textbf{Infrastructure Prerequisites}: Users need only basic computer skills and internet access, both of which are standard in Vietnamese retail environments, even for small shops. No specialized training or equipment is required.
+        \item \textbf{Change Management}: Successful deployment will require clear communication about system benefits, hands-on training, and initial support during transition. Pilot testing with a friendly retailer can identify and address adoption challenges before wider rollout.
+    \end{itemize}
+    
+    \item \textbf{Operational Impact}:
+    \begin{itemize}
+        \item \textbf{Workflow Changes}: Key workflows (adding inventory, processing orders, handling refunds) become digitized and standardized. While this represents change, it eliminates inefficiencies and inconsistencies present in manual systems.
+        \item \textbf{Performance Improvements}: Faster transaction processing, instant inventory updates, and automated reporting will measurably improve operational efficiency. Staff will experience reduced workload for routine tasks.
+        \item \textbf{Service Quality}: Customers benefit from improved order accuracy, faster response times, self-service options, and transparent order tracking. These improvements enhance perceived service quality and customer satisfaction.
+        \item \textbf{Business Continuity}: The system introduces dependency on technology infrastructure. However, offline contingency procedures (e.g., manual order recording during outages) can be maintained. Cloud-based hosting with automatic backups mitigates data loss risks.
+    \end{itemize}
+    
+    \item \textbf{Stakeholder Support}:
+    \begin{itemize}
+        \item \textbf{Business Owners}: Will support the system if demonstrated benefits (cost savings, increased sales, better insights) justify investment. Providing case studies or pilot results builds confidence.
+        \item \textbf{Employees}: Will support the system if training is adequate, interfaces are intuitive, and the system genuinely reduces their workload rather than adding complexity.
+        \item \textbf{Customers}: Will embrace the system if it offers convenience (online browsing, order tracking) and maintains or improves service quality compared to traditional methods.
+        \item \textbf{Suppliers/Partners}: The system's compatibility with standard invoicing and inventory practices ensures it does not disrupt existing supplier relationships.
+    \end{itemize}
+    
+    \item \textbf{Market Readiness}:
+    \begin{itemize}
+        \item The Vietnamese e-commerce market has grown significantly, with consumers increasingly comfortable making online purchases. Laptop purchases, being considered and high-value, benefit from detailed online product information and reviews.
+        \item Competing retailers are adopting digital tools, creating competitive pressure that motivates adoption.
+        \item Government initiatives promoting digital transformation in business create a supportive policy environment.
+    \end{itemize}
+\end{itemize}
+
+\textbf{Conclusion}: The project is operationally feasible. The system aligns with user needs and existing retail processes, requires minimal organizational change, and offers clear operational benefits. While some user resistance is expected, it can be mitigated through training, user-friendly design, and demonstrated value. The Vietnamese retail market is ready for such solutions, and stakeholder support can be secured by highlighting efficiency gains and competitive advantages.
+
 \subsubsection{Economic Feasibility}
+
+Economic feasibility evaluates whether the project delivers sufficient financial benefits to justify its costs. This analysis considers development costs, operational expenses, and expected returns, all expressed in Vietnamese đồng (VND):
+
+\begin{itemize}
+    \item \textbf{Development Costs}:
+    \begin{itemize}
+        \item \textbf{Labor}: As an academic project, student labor is effectively free, though the opportunity cost of team members' time should be acknowledged. In a commercial context, developing a similar system would require approximately 800-1,000 person-hours of development effort.
+        \item \textbf{Tools and Software}: All core technologies (React, Python, PostgreSQL, Elasticsearch, Redis, Firebase) are open-source or offer free tiers sufficient for development. Estimated cost: 0 VND for development phase.
+        \item \textbf{Infrastructure}: Development can occur on existing computers. Cloud development environments or temporary testing servers may cost approximately 500,000-1,000,000 VND for the duration of the project if paid services are used.
+        \item \textbf{Learning Resources}: Online documentation, tutorials, and courses are freely available. No significant costs for training materials.
+        \item \textbf{Total Estimated Development Cost}: Approximately 1,000,000 VND for infrastructure (if needed), with most costs being opportunity costs of student time.
+    \end{itemize}
+    
+    \item \textbf{Deployment and Operational Costs}:
+    \begin{itemize}
+        \item \textbf{Hosting}: A small laptop shop can deploy the application on budget cloud hosting for approximately 500,000-1,500,000 VND per month, depending on traffic levels. Providers like BKHOST or international services like Heroku or Railway offer suitable options.
+        \item \textbf{Domain Name}: Approximately 200,000-500,000 VND per year for a .vn domain.
+        \item \textbf{SSL Certificate}: Free options (Let's Encrypt) or paid certificates for 500,000-1,000,000 VND per year.
+        \item \textbf{Payment Gateway Fees}: Vietnamese payment services (VNPay, MoMo) typically charge 1.5-3\% per transaction. For a shop processing 50,000,000 VND in online sales monthly, this equals 750,000-1,500,000 VND per month.
+        \item \textbf{Maintenance and Updates}: Assuming quarterly updates and ongoing monitoring, approximately 2,000,000-3,000,000 VND per year in contractor time or in-house staff effort.
+        \item \textbf{Total Estimated Annual Operational Cost}: Approximately 12,000,000-24,000,000 VND per year (hosting + domain + SSL + maintenance), plus 1.5-3\% of transaction values for payment processing.
+    \end{itemize}
+    
+    \item \textbf{Expected Financial Benefits}:
+    \begin{itemize}
+        \item \textbf{Labor Savings}: Automating inventory and order management can save 2-3 hours of staff time per day. At an average retail staff wage of 5,000,000-7,000,000 VND per month, this represents monthly savings of approximately 1,500,000-2,000,000 VND.
+        \item \textbf{Error Reduction}: Reducing pricing errors, order mistakes, and inventory discrepancies can prevent losses. Conservatively, preventing 2-3 errors per month saves approximately 500,000-1,000,000 VND monthly.
+        \item \textbf{Increased Sales}: Improved customer experience and online presence can increase sales by 10-15\%. For a shop with 200,000,000 VND monthly revenue and 15\% profit margin, a 10\% sales increase generates an additional 3,000,000 VND monthly profit.
+        \item \textbf{Inventory Optimization}: Better stock management can improve inventory turnover by 10-20\%, freeing up working capital. For a shop with 100,000,000 VND in average inventory, a 15\% reduction frees up 15,000,000 VND in capital.
+        \item \textbf{Customer Retention}: Improved service quality and convenience can increase repeat purchase rates. Even a modest 5\% increase in customer retention can yield 1,000,000-2,000,000 VND additional monthly revenue for established shops.
+        \item \textbf{Total Estimated Annual Benefits}: Approximately 60,000,000-84,000,000 VND per year in direct savings and increased profit (labor savings + error reduction + increased sales + retention), plus improved capital efficiency.
+    \end{itemize}
+    
+    \item \textbf{Return on Investment (ROI)}:
+    \begin{itemize}
+        \item First-year net benefit: 60,000,000-84,000,000 VND (benefits) - 12,000,000-24,000,000 VND (operational costs) - 1,000,000 VND (deployment) = approximately 35,000,000-71,000,000 VND.
+        \item ROI: (35,000,000-71,000,000 VND benefit) / (13,000,000-25,000,000 VND total cost) × 100\% = approximately 140-280\% in the first year.
+        \item Payback period: Approximately 2-4 months based on monthly net benefits of 4,000,000-6,000,000 VND.
+    \end{itemize}
+    
+    \item \textbf{Break-Even Analysis}:
+    \begin{itemize}
+        \item Monthly break-even point: The shop needs to achieve approximately 1,500,000-2,500,000 VND in monthly benefits to cover operational costs.
+        \item Given labor savings alone meet this threshold, the system is economically viable even without sales increases.
+        \item Most shops will exceed break-even within the first month of operation.
+    \end{itemize}
+    
+    \item \textbf{Risk Considerations}:
+    \begin{itemize}
+        \item \textbf{Adoption Risk}: If users do not fully utilize the system, benefits may be lower than projected. Mitigation: thorough training and user-friendly design.
+        \item \textbf{Technical Issues}: System downtime could temporarily reduce sales. Mitigation: reliable hosting, backups, and offline contingency procedures.
+        \item \textbf{Competition}: If competitors adopt similar systems, the competitive advantage diminishes. However, operational efficiency benefits remain.
+    \end{itemize}
+\end{itemize}
+
+\textbf{Conclusion}: The project is economically feasible. With minimal development costs (academic context) and manageable operational expenses, the system offers strong ROI of 140-280\% in the first year and payback within 2-4 months. Benefits substantially exceed costs even under conservative assumptions. For Vietnamese laptop retailers, the investment represents a cost-effective path to operational improvement and competitive positioning.
+
 \subsubsection{Legal \& Regulatory Feasibility}
+
+Legal and regulatory feasibility examines whether the proposed system complies with applicable laws, regulations, and industry standards in Vietnam. Key considerations include:
+
+\begin{itemize}
+    \item \textbf{Data Protection and Privacy}:
+    \begin{itemize}
+        \item \textbf{Personal Data Protection}: Vietnam's legal framework for data protection is evolving. The 2018 Law on Cybersecurity and various government decrees impose requirements for collecting, processing, and storing personal data. The system must:
+        \begin{itemize}
+            \item Obtain user consent for data collection and clearly communicate privacy policies.
+            \item Implement security measures to protect customer personal information (names, addresses, phone numbers, email addresses).
+            \item Limit data collection to what is necessary for business purposes.
+            \item Provide mechanisms for users to access, correct, or delete their personal data.
+        \end{itemize}
+        \item \textbf{Data Localization}: The Law on Cybersecurity requires certain types of data to be stored within Vietnam. While its application to small retail systems is not strictly enforced, using Vietnamese hosting providers or ensuring data storage options within Vietnam provides additional compliance assurance.
+        \item \textbf{Firebase Compliance}: Firebase (Google) provides data processing agreements and complies with international data protection standards. However, retailers should be aware of data residency implications and configure Firebase regions appropriately if possible.
+    \end{itemize}
+    
+    \item \textbf{E-Commerce Regulations}:
+    \begin{itemize}
+        \item \textbf{Decree 52/2013/ND-CP}: Regulates e-commerce activities in Vietnam, requiring online retailers to:
+        \begin{itemize}
+            \item Display business registration information prominently on the website.
+            \item Provide clear terms of service, delivery policies, and return/refund policies.
+            \item Issue proper invoices for transactions in accordance with tax regulations.
+            \item Maintain transaction records for specified periods.
+        \end{itemize}
+        \item The system must support displaying required business information and provide capabilities for storing transaction records and generating compliant invoices.
+    \end{itemize}
+    
+    \item \textbf{Consumer Protection}:
+    \begin{itemize}
+        \item \textbf{Law on Protection of Consumer Rights}: Mandates clear product information, honest advertising, and fair warranty/return policies. The system must:
+        \begin{itemize}
+            \item Display accurate product specifications and pricing.
+            \item Support transparent refund/return processes as implemented through the refund ticket system.
+            \item Provide clear terms and conditions accessible to customers.
+        \end{itemize}
+        \item \textbf{Product Warranty Management}: While not directly implemented in the current system scope, retailers must comply with warranty obligations. The system should allow for recording warranty information for future enhancement.
+    \end{itemize}
+    
+    \item \textbf{Payment Regulations}:
+    \begin{itemize}
+        \item \textbf{Electronic Payment}: The State Bank of Vietnam regulates electronic payment services. The system integrates with licensed payment service providers (VNPay, MoMo), which are responsible for payment processing compliance.
+        \item \textbf{Cash Transactions}: Supporting cash-on-delivery complies with traditional payment preferences and avoids forcing customers into electronic payments if they prefer cash.
+        \item \textbf{Tax Compliance}: The system must facilitate proper tax reporting by recording all transactions and allowing export of sales data for tax purposes.
+    \end{itemize}
+    
+    \item \textbf{Intellectual Property}:
+    \begin{itemize}
+        \item \textbf{Software Licensing}: All technologies used (React, Python, PostgreSQL, etc.) are open-source with permissive licenses (MIT, Apache, BSD, PostgreSQL License) that allow commercial use without licensing fees. Proper attribution and compliance with license terms must be maintained.
+        \item \textbf{Content Rights}: Product images and descriptions must either be original, licensed, or used with permission from manufacturers. The system design allows retailers to upload their own content, placing responsibility on them to ensure proper rights.
+        \item \textbf{Trademark Compliance}: Product listings will reference laptop brand names (Dell, HP, Lenovo, etc.). This falls under nominative fair use when selling genuine products, but retailers must ensure they are authorized resellers if brand policies require it.
+    \end{itemize}
+    
+    \item \textbf{Accessibility and Standards}:
+    \begin{itemize}
+        \item While Vietnam does not yet mandate web accessibility standards like some other countries, designing for accessibility is best practice and may become required in the future. The system should aim for reasonable accessibility (e.g., keyboard navigation, screen reader compatibility) where feasible.
+    \end{itemize}
+    
+    \item \textbf{Cybersecurity Requirements}:
+    \begin{itemize}
+        \item The Law on Cybersecurity mandates protection of information systems and networks. The system must implement appropriate security measures:
+        \begin{itemize}
+            \item Secure authentication (provided by Firebase).
+            \item Encrypted data transmission (HTTPS/SSL).
+            \item Protection against common vulnerabilities (SQL injection, XSS, CSRF).
+            \item Regular security updates and patches.
+        \end{itemize}
+    \end{itemize}
+    
+    \item \textbf{Liability and Terms of Service}:
+    \begin{itemize}
+        \item The system must include clear terms of service and disclaimers limiting liability for factors outside the retailer's control (e.g., manufacturer defects, shipping delays by third parties).
+        \item Terms should be drafted in Vietnamese and comply with Vietnamese contract law principles.
+    \end{itemize}
+\end{itemize}
+
+\textbf{Conclusion}: The project is legally and regulatory feasible with appropriate safeguards. Key compliance requirements include data protection measures, display of required business information, support for consumer protection practices, integration with licensed payment providers, and proper security implementation. No legal barriers prevent system development or deployment, though retailers must ensure their own business practices (business registration, tax compliance, authorized reseller status) are in order. Designing the system with compliance features (privacy policies, data security, transaction records) from the outset simplifies legal adherence and reduces future risks.
+
 \subsubsection{Market Feasibility}
+
+Market feasibility assesses whether there is sufficient demand for the system and whether the competitive landscape supports successful adoption. This analysis examines the Vietnamese laptop retail market and potential user base:
+
+\begin{itemize}
+    \item \textbf{Market Size and Growth}:
+    \begin{itemize}
+        \item \textbf{Laptop Market}: Vietnam's personal computer market, including laptops, has experienced steady growth driven by increasing digitalization, remote work trends, and expanding middle class. Annual laptop sales in Vietnam are estimated in the millions of units, representing a multi-billion VND market.
+        \item \textbf{Retail Landscape}: The market includes large chains (e.g., Thế Giới Di Động, FPT Shop), mid-sized specialty stores, and numerous small independent retailers. Small to medium retailers represent a significant portion of the market and are the primary target for this system.
+        \item \textbf{Growth Trajectory}: E-commerce penetration in electronics continues to rise, with consumers increasingly researching and purchasing laptops online. This trend creates demand for tools that help smaller retailers compete digitally.
+    \end{itemize}
+    
+    \item \textbf{Target User Segments}:
+    \begin{itemize}
+        \item \textbf{Primary Target}: Small to medium-sized laptop retailers with 1-5 physical locations, annual revenues of 2-10 billion VND, and 5-20 employees. These businesses lack resources for custom enterprise software but need operational improvements to compete.
+        \item \textbf{Secondary Target}: Independent laptop technicians or retailers operating from home or small storefronts, who currently rely entirely on manual methods or basic spreadsheets.
+        \item \textbf{Market Size Estimate}: There are hundreds of such retailers in major Vietnamese cities (Hanoi, Ho Chi Minh City, Da Nang, Can Tho) and thousands nationwide, representing a substantial potential user base.
+    \end{itemize}
+    
+    \item \textbf{User Needs and Pain Points}:
+    \begin{itemize}
+        \item \textbf{Validated Needs}: Discussions with small retailers and observation of market practices confirm:
+        \begin{itemize}
+            \item Inventory tracking is time-consuming and error-prone with manual methods.
+            \item Customers increasingly expect online product information and purchasing options.
+            \item Competition from larger chains with sophisticated systems pressures smaller retailers.
+            \item Lack of business analytics limits strategic decision-making.
+        \end{itemize}
+        \item \textbf{Willingness to Adopt}: Retailers express interest in affordable, easy-to-use management systems that demonstrably reduce workload and increase sales. Price sensitivity is high, favoring low-cost or subscription-based models over expensive custom solutions.
+    \end{itemize}
+    
+    \item \textbf{Competitive Landscape}:
+    \begin{itemize}
+        \item \textbf{Existing Solutions}:
+        \begin{itemize}
+            \item \textbf{Generic E-Commerce Platforms}: Shopify, WooCommerce, or Vietnamese alternatives (Haravan, Sapo) offer online stores but lack specialized laptop retail features (detailed specifications, technical search filters) and may be complex for small retailers.
+            \item \textbf{Enterprise Systems}: Large retailers use expensive ERP systems (SAP, Oracle) that are unaffordable and overly complex for small shops.
+            \item \textbf{Point-of-Sale Systems}: Basic POS systems handle transactions but lack inventory management, customer databases, or online capabilities.
+            \item \textbf{Manual Methods}: Many small retailers still use notebooks, spreadsheets, or simple accounting software, representing an addressable market for digital transformation.
+        \end{itemize}
+        \item \textbf{Market Gap}: There is limited availability of affordable, laptop-specific retail management systems designed for small Vietnamese retailers. This represents an opportunity for a targeted solution.
+    \end{itemize}
+    
+    \item \textbf{Competitive Advantages}:
+    \begin{itemize}
+        \item \textbf{Domain Focus}: Unlike generic e-commerce platforms, the system is purpose-built for laptop retail with specialized features (technical specifications, filtering by hardware).
+        \item \textbf{Affordability}: As an open-source academic project, the system can be deployed at minimal cost compared to commercial alternatives.
+        \item \textbf{Simplicity}: Designed for ease of use by non-technical retailers, with Vietnamese language support and intuitive interfaces.
+        \item \textbf{Completeness}: Integrates inventory, sales, customer management, and refund handling in one system, reducing need for multiple tools.
+        \item \textbf{Customizability}: Open-source nature allows customization by developers for specific retailer needs.
+    \end{itemize}
+    
+    \item \textbf{Market Entry Barriers}:
+    \begin{itemize}
+        \item \textbf{User Acquisition}: Reaching small retailers and convincing them to adopt new technology requires marketing effort and demonstration of value. Overcoming initial skepticism is a challenge.
+        \item \textbf{Support Requirements}: Users will need training, documentation, and ongoing support, which requires resources beyond initial development.
+        \item \textbf{Trust and Credibility}: Retailers may hesitate to adopt an academic project versus established commercial products. Building credibility through case studies, testimonials, and pilot successes is important.
+        \item \textbf{Integration Needs}: Some retailers may require integration with existing accounting systems or suppliers' inventory systems, which is beyond the current scope but may be necessary for some users.
+    \end{itemize}
+    
+    \item \textbf{Market Acceptance Indicators}:
+    \begin{itemize}
+        \item \textbf{Positive Factors}:
+        \begin{itemize}
+            \item Growing comfort with cloud-based software among Vietnamese businesses.
+            \item Government and industry push for digital transformation.
+            \item Success of other Vietnamese SaaS products in adjacent markets demonstrates market readiness.
+            \item Increasing availability of affordable internet and devices removes technology adoption barriers.
+        \end{itemize}
+        \item \textbf{Negative Factors}:
+        \begin{itemize}
+            \item Conservative business culture in some segments may slow adoption.
+            \item Economic uncertainty may limit willingness to invest in new systems.
+            \item Competition from free or low-cost generic tools may reduce perceived need for specialized solution.
+        \end{itemize}
+    \end{itemize}
+    
+    \item \textbf{Scalability and Market Expansion}:
+    \begin{itemize}
+        \item Initial focus on Hanoi market allows concentrated pilot testing and refinement.
+        \item System can expand to other Vietnamese cities with minimal modification.
+        \item Future potential to adapt for other electronics retail categories (smartphones, tablets) or other retail sectors.
+    \end{itemize}
+\end{itemize}
+
+\textbf{Conclusion}: The project is market feasible. There is a substantial target market of small to medium laptop retailers in Vietnam who face operational challenges addressable by the proposed system. While competition exists, no solution specifically targets this niche with comparable focus, affordability, and completeness. User needs are validated, and market trends support adoption. Success will depend on effective demonstration of value, user-friendly design, and provision of adequate support. The market gap and competitive advantages indicate strong potential for adoption among target users.
 
 \subsection{Initial Project Plan}
 
 \subsubsection{Project Scope Estimation}
 
+Defining the project scope ensures clear boundaries for what will be delivered and manages stakeholder expectations. The scope is estimated in terms of features, deliverables, and constraints:
+
+\begin{itemize}
+    \item \textbf{Core Features (In Scope)}:
+    \begin{itemize}
+        \item \textbf{Customer-Facing Portal}:
+        \begin{itemize}
+            \item Product catalog browsing with search and filtering by brand, price, specifications.
+            \item Detailed product pages with descriptions, specifications, pricing (VND), availability, and customer reviews.
+            \item Shopping cart functionality for adding, updating, and removing items.
+            \item User registration and authentication (via Firebase).
+            \item Order placement with support for cash-on-delivery and e-banking payment methods.
+            \item Customer account management: view order history, submit reviews, request refunds.
+        \end{itemize}
+        
+        \item \textbf{Administrative Panel}:
+        \begin{itemize}
+            \item Inventory management: add, edit, and remove laptop products; update pricing and stock quantities.
+            \item Order management: view all orders, update order statuses, process fulfillments.
+            \item Dashboard with key metrics: total sales (VND), order counts, pending orders, low stock alerts.
+            \item Refund ticket management: view refund requests, update ticket statuses, resolve customer issues.
+            \item Admin authentication with role-based access control.
+        \end{itemize}
+        
+        \item \textbf{Technical Infrastructure}:
+        \begin{itemize}
+            \item React-based responsive front-end compatible with desktop and mobile browsers.
+            \item Python/FastAPI RESTful back-end with well-documented API endpoints.
+            \item PostgreSQL database for persistent storage of products, orders, customers, reviews, refund tickets.
+            \item Elasticsearch integration for advanced product search and filtering.
+            \item Redis cache for shopping cart management.
+            \item Firebase Authentication for user identity management.
+            \item Docker-based development environment for consistent tooling across team members.
+        \end{itemize}
+    \end{itemize}
+    
+    \item \textbf{Excluded from Scope (Out of Scope)}:
+    \begin{itemize}
+        \item \textbf{Advanced Features}:
+        \begin{itemize}
+            \item Customer recommendation engine or AI-based product suggestions (future enhancement).
+            \item Multi-language support beyond Vietnamese and English.
+            \item Mobile native applications (iOS/Android)—web responsiveness only.
+            \item Integration with external accounting software or ERP systems.
+            \item Supplier management or procurement modules.
+            \item Loyalty programs or promotional discount codes.
+        \end{itemize}
+        
+        \item \textbf{Extended Functionality}:
+        \begin{itemize}
+            \item Real-time chat support or customer service ticketing beyond refund requests.
+            \item Automated marketing campaigns or email newsletters (basic subscription collection is included).
+            \item Multi-tenant architecture for serving multiple retailers from one instance.
+            \item Advanced analytics and reporting beyond dashboard metrics.
+        \end{itemize}
+        
+        \item \textbf{Deployment and Operations}:
+        \begin{itemize}
+            \item Production deployment and hosting beyond demonstration/testing environment (deployment guide will be provided).
+            \item Ongoing maintenance and feature updates after project completion.
+            \item Customer support infrastructure for end-users beyond documentation.
+        \end{itemize}
+    \end{itemize}
+    
+    \item \textbf{Deliverables}:
+    \begin{itemize}
+        \item \textbf{Software Deliverables}:
+        \begin{itemize}
+            \item Complete, functional web application source code (front-end and back-end).
+            \item Database schema and initialization scripts.
+            \item Docker configuration files for development environment.
+            \item Deployment guide and installation instructions.
+        \end{itemize}
+        
+        \item \textbf{Documentation Deliverables}:
+        \begin{itemize}
+            \item System Design and Analysis project report (this document).
+            \item API documentation (auto-generated by FastAPI and manually supplemented).
+            \item User manual for customers and administrators (Vietnamese).
+            \item Technical documentation for developers (architecture, component descriptions, setup instructions).
+        \end{itemize}
+        
+        \item \textbf{Testing Deliverables}:
+        \begin{itemize}
+            \item Unit tests for critical back-end functions.
+            \item Integration tests for API endpoints.
+            \item Test plan and test case documentation.
+            \item User acceptance testing (UAT) report based on simulated scenarios.
+        \end{itemize}
+    \end{itemize}
+    
+    \item \textbf{Constraints and Assumptions}:
+    \begin{itemize}
+        \item \textbf{Time Constraint}: Project must be completed within the semester timeline (approximately 12-14 weeks), limiting feature scope to core functionality.
+        \item \textbf{Budget Constraint}: No significant financial budget; reliance on free and open-source tools. Limited budget for cloud hosting during development/testing.
+        \item \textbf{Team Capacity}: Six part-time student developers with varying availability due to other coursework.
+        \item \textbf{Assumption - Internet Access}: Users (customers and administrators) have reliable internet connectivity.
+        \item \textbf{Assumption - Browser Compatibility}: Target modern browsers (Chrome, Firefox, Edge, Safari) with no requirement for legacy browser support (e.g., Internet Explorer).
+        \item \textbf{Assumption - Payment Gateway}: Integration with Vietnamese e-banking services (VNPay or MoMo) can be implemented in test/sandbox mode, with production deployment requiring retailer's own payment gateway account.
+    \end{itemize}
+    
+    \item \textbf{Success Criteria}:
+    \begin{itemize}
+        \item All core features are implemented and functional as specified.
+        \item System passes defined test cases with no critical bugs.
+        \item User interfaces are intuitive and receive positive feedback in UAT.
+        \item API endpoints are documented and perform efficiently under simulated load.
+        \item Codebase is clean, maintainable, and follows best practices.
+        \item Documentation is complete and enables future developers to understand and extend the system.
+    \end{itemize}
+\end{itemize}
+
+This scope estimation provides clear boundaries for the project, ensures alignment among team members, and sets realistic expectations for deliverables within the given time and resource constraints.
+
 \subsubsection{Staffing Plan}
+
+Effective resource allocation across the six-member team is critical to project success. The staffing plan assigns roles based on individual skills and interests, while maintaining flexibility for collaboration:
+
+\begin{itemize}
+    \item \textbf{Team Structure}:
+    \begin{itemize}
+        \item \textbf{Project Manager} (1 person):
+        \begin{itemize}
+            \item \textbf{Responsibilities}: Coordinate team activities, maintain project schedule, facilitate communication, track progress against milestones, manage risks and issues, liaison with instructor.
+            \item \textbf{Skills Required}: Organization, communication, leadership, familiarity with project management methodologies.
+            \item \textbf{Time Commitment}: Approximately 8-10 hours per week, including team meetings and coordination activities.
+        \end{itemize}
+        
+        \item \textbf{Front-End Developers} (2 people):
+        \begin{itemize}
+            \item \textbf{Responsibilities}: Develop React components for customer portal and admin panel, implement responsive layouts, integrate with back-end APIs, ensure cross-browser compatibility.
+            \item \textbf{Skills Required}: Proficiency in React, JavaScript/TypeScript, HTML/CSS, responsive design principles, experience with Ant Design or similar UI libraries.
+            \item \textbf{Time Commitment}: Approximately 10-12 hours per week each for development, testing, and refinement.
+            \item \textbf{Division of Work}: One developer focuses primarily on customer-facing pages (catalog, product details, cart, order placement); the other focuses on admin panel features (dashboard, inventory management, order/refund management).
+        \end{itemize}
+        
+        \item \textbf{Back-End Developers} (2 people):
+        \begin{itemize}
+            \item \textbf{Responsibilities}: Develop FastAPI endpoints, implement business logic, integrate with PostgreSQL database, configure Elasticsearch and Redis, implement authentication and authorization, ensure API security and performance.
+            \item \textbf{Skills Required}: Proficiency in Python, FastAPI, RESTful API design, database management (PostgreSQL), familiarity with Elasticsearch and Redis, understanding of security best practices.
+            \item \textbf{Time Commitment}: Approximately 10-12 hours per week each for development, testing, and optimization.
+            \item \textbf{Division of Work}: One developer handles product-related APIs (catalog, search, filtering, reviews); the other handles order-related APIs (cart, orders, refunds, dashboard metrics). Both collaborate on authentication and database schema.
+        \end{itemize}
+        
+        \item \textbf{Database Administrator / Data Engineer} (1 person):
+        \begin{itemize}
+            \item \textbf{Responsibilities}: Design database schema, set up PostgreSQL and Elasticsearch, configure Logstash for data synchronization, optimize database queries, implement backup strategies, populate test data.
+            \item \textbf{Skills Required}: Strong knowledge of relational database design, SQL, PostgreSQL, Elasticsearch configuration, data modeling.
+            \item \textbf{Time Commitment}: Approximately 8-10 hours per week, with heavier involvement in early phases (schema design) and lighter in later phases (maintenance).
+        \end{itemize}
+        
+        \item \textbf{DevOps / Testing Specialist} (1 person - may overlap with Project Manager):
+        \begin{itemize}
+            \item \textbf{Responsibilities}: Set up Docker development environment, configure CI/CD pipelines if used, manage version control (Git/GitHub), coordinate deployment to testing environment, develop and execute test plans, write automated tests, conduct UAT.
+            \item \textbf{Skills Required}: Familiarity with Docker, Git, testing frameworks (pytest for back-end, Jest/React Testing Library for front-end), deployment procedures.
+            \item \textbf{Time Commitment}: Approximately 8-10 hours per week, with increased effort during integration and testing phases.
+        \end{itemize}
+    \end{itemize}
+    
+    \item \textbf{Collaboration and Cross-Functionality}:
+    \begin{itemize}
+        \item While primary roles are assigned, team members collaborate across domains as needed. For example:
+        \begin{itemize}
+            \item Front-end developers may contribute to API design discussions.
+            \item Back-end developers may assist with front-end data integration issues.
+            \item All team members participate in testing their own components and peer reviewing others' code.
+        \end{itemize}
+        \item Regular team meetings (weekly) ensure alignment and knowledge sharing.
+        \item Pair programming or code review sessions are encouraged for complex features or knowledge transfer.
+    \end{itemize}
+    
+    \item \textbf{Skill Development}:
+    \begin{itemize}
+        \item Team members are encouraged to upskill in areas outside their primary role, particularly technologies they are less familiar with (e.g., a back-end developer learning React basics).
+        \item Shared documentation and internal tutorials help distribute knowledge across the team.
+    \end{itemize}
+    
+    \item \textbf{Communication Channels}:
+    \begin{itemize}
+        \item \textbf{Primary}: Weekly in-person or virtual team meetings for progress updates, problem-solving, and planning.
+        \item \textbf{Asynchronous}: Group chat platform (e.g., Messenger, Telegram, Discord) for quick questions and coordination.
+        \item \textbf{Documentation}: Shared documents (Google Docs, Notion) for meeting notes, design decisions, and issue tracking.
+        \item \textbf{Code Collaboration}: GitHub for version control, pull requests, code reviews, and issue tracking.
+    \end{itemize}
+    
+    \item \textbf{Risk Mitigation}:
+    \begin{itemize}
+        \item \textbf{Availability Fluctuations}: If a team member faces temporary unavailability (exams, personal issues), others can provide backup support in their domain. Cross-training reduces single points of failure.
+        \item \textbf{Skill Gaps}: If technical challenges exceed team expertise, instructor guidance or online resources (documentation, tutorials, Stack Overflow) are leveraged.
+        \item \textbf{Conflict Resolution}: The project manager facilitates discussion and resolution of any interpersonal conflicts or disagreements about technical approaches.
+    \end{itemize}
+\end{itemize}
+
+This staffing plan ensures clear assignment of responsibilities while maintaining flexibility for collaboration, aligning with the team's available skills and time commitments within the academic project context.
 
 \subsubsection{CASE Tools}
 
-\clearpage
+Computer-Aided Software Engineering (CASE) tools streamline development, improve collaboration, and enhance productivity. The following tools are selected for this project:
+
+\begin{itemize}
+    \item \textbf{Development Tools}:
+    \begin{itemize}
+        \item \textbf{Integrated Development Environments (IDEs)}:
+        \begin{itemize}
+            \item \textbf{Visual Studio Code}: Primary IDE for both front-end and back-end development. Offers extensive extensions for React, Python, Docker, Git, and other technologies. Lightweight, free, and cross-platform (Windows, macOS, Linux).
+            \item \textbf{Extensions}: ESLint (JavaScript linting), Prettier (code formatting), Python (IntelliSense and debugging), Docker (container management), GitLens (Git integration), Thunder Client or REST Client (API testing).
+        \end{itemize}
+        
+        \item \textbf{Version Control}:
+        \begin{itemize}
+            \item \textbf{Git}: Distributed version control system for tracking code changes.
+            \item \textbf{GitHub}: Cloud-based Git repository hosting for collaboration, code review (pull requests), issue tracking, and project management (GitHub Projects or Issues).
+        \end{itemize}
+        
+        \item \textbf{Containerization}:
+        \begin{itemize}
+            \item \textbf{Docker Compose}: Orchestrates multi-container setups (front-end, back-end, PostgreSQL, Elasticsearch, Redis) to provide consistent development environments across team members’ machines.
+        \end{itemize}
+    \end{itemize}
+    
+    \item \textbf{Database and Data Management Tools}:
+    \begin{itemize}
+        \item \textbf{pgAdmin or DBeaver}: Graphical database management tools for PostgreSQL. Facilitate schema design, query execution, data inspection, and performance analysis.
+        \item \textbf{Redis Insight or RedisInsight}: GUI for monitoring and managing Redis cache, useful for debugging cart-related issues.
+        \item \textbf{Kibana or Elasticsearch Head}: Web-based interfaces for Elasticsearch monitoring, query testing, and index inspection.
+    \end{itemize}
+    
+    \item \textbf{API Development and Testing Tools}:
+    \begin{itemize}
+        \item \textbf{Postman or Insomnia}: API clients for testing RESTful endpoints, simulating requests, inspecting responses, and organizing API test collections. Useful for back-end developers and integration testing.
+        \item \textbf{FastAPI Auto-Generated Documentation}: FastAPI provides automatic interactive API docs (Swagger UI and ReDoc) accessible via browser, facilitating API exploration and front-end integration.
+    \end{itemize}
+    
+    \item \textbf{Front-End Development Tools}:
+    \begin{itemize}
+        \item \textbf{Node.js and npm/Yarn}: JavaScript runtime and package managers for managing front-end dependencies (React, Ant Design, Axios, etc.).
+        \item \textbf{React Developer Tools}: Browser extension for debugging React components, inspecting component hierarchy, and monitoring state/props.
+        \item \textbf{Browser DevTools}: Built-in developer tools in Chrome, Firefox, or Edge for HTML/CSS inspection, JavaScript debugging, network monitoring, and performance profiling.
+    \end{itemize}
+    
+    \item \textbf{Testing Tools}:
+    \begin{itemize}
+        \item \textbf{pytest}: Python testing framework for back-end unit and integration tests. Supports fixtures, parameterized tests, and extensive plugins.
+        \item \textbf{Jest and React Testing Library}: JavaScript testing frameworks for front-end component testing and user interaction simulation.
+        \item \textbf{Coverage.py and Istanbul/nyc}: Code coverage tools for measuring test coverage in Python and JavaScript, respectively.
+    \end{itemize}
+    
+    \item \textbf{Design and Modeling Tools}:
+    \begin{itemize}
+        \item \textbf{Draw.io (diagrams.net) or Lucidchart}: Web-based diagramming tools for creating system architecture diagrams, use case diagrams, sequence diagrams, ERD (Entity-Relationship Diagrams), and flowcharts.
+        \item \textbf{Figma or Adobe XD}: UI/UX design tools for creating wireframes, mockups, and prototypes of the front-end interface before implementation (optional, if design-first approach is taken).
+    \end{itemize}
+    
+    \item \textbf{Documentation Tools}:
+    \begin{itemize}
+        \item \textbf{LaTeX (Overleaf or local TeX distribution)}: For writing the formal project report with professional formatting.
+        \item \textbf{Markdown}: Lightweight markup language for README files, inline code documentation, and technical notes (rendered nicely on GitHub).
+        \item \textbf{Sphinx or MkDocs}: Documentation generators for creating comprehensive technical documentation from Markdown or reStructuredText sources (optional for advanced documentation needs).
+    \end{itemize}
+    
+    \item \textbf{Communication and Collaboration Tools}:
+    \begin{itemize}
+        \item \textbf{Messenger, Telegram, or Discord}: Group chat platforms for real-time team communication and quick coordination.
+        \item \textbf{Google Meet or Zoom}: Video conferencing for virtual team meetings and remote collaboration.
+        \item \textbf{Google Docs / Sheets / Drive or Microsoft Office 365}: Cloud-based document collaboration for meeting notes, planning documents, and spreadsheet-based tracking.
+        \item \textbf{Notion or Trello}: Project management and documentation platforms for task tracking, sprint planning, knowledge base, and team coordination (optional, if more structure is desired beyond GitHub Issues).
+    \end{itemize}
+    
+    \item \textbf{Continuous Integration / Deployment (CI/CD)} (Optional):
+    \begin{itemize}
+        \item \textbf{GitHub Actions}: Automate testing and deployment workflows triggered by code commits. Can run automated tests, build Docker images, or deploy to testing environments.
+        \item \textbf{Heroku, Railway, or Vercel}: Cloud platforms offering free tiers for hosting and deploying the application for testing and demonstration purposes.
+    \end{itemize}
+\end{itemize}
+
+\textbf{Rationale for Tool Selection}:
+\begin{itemize}
+    \item \textbf{Cost}: All selected tools are either free or offer free tiers sufficient for academic projects, aligning with the budget constraint.
+    \item \textbf{Learning Curve}: Tools are widely used in industry and have extensive tutorials and community support, making them accessible to students.
+    \item \textbf{Integration}: Tools integrate well with each other (e.g., VS Code with Git and Docker, FastAPI with Swagger, GitHub with CI/CD).
+    \item \textbf{Industry Relevance}: Using industry-standard tools provides practical experience valuable for students' future careers.
+\end{itemize}
+
+This comprehensive CASE tool selection supports efficient development, collaboration, testing, and documentation throughout the project lifecycle.
 
 \section{Analysis}
 \subsection{General Use Cases Diagram}
@@ -481,25 +1288,25 @@ They are grouped by actor roles, following the same layout as the G8 System repo
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Sequence_Diagram/UC_0_Register.png}
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Sequence_Diagram/UC_0_Register.drawio.png}
     \caption{UC 0 – Register}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Sequence_Diagram/UC_1_Login.png}
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Sequence_Diagram/UC_1_Login.drawio.png}
     \caption{UC 1 – Login}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Sequence_Diagram/UC_2_ExploreProducts.png}
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Sequence_Diagram/UC_2_ExploreProducts.drawio.png}
     \caption{UC 2 – Explore Products}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Sequence_Diagram/UC_3_SearchLaptop-Trang-1.drawio.png}
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Sequence_Diagram/UC_3_SearchLaptop.drawio.png}
     \caption{UC 3 – Search Laptop}
 \end{figure}
 
@@ -511,13 +1318,13 @@ They are grouped by actor roles, following the same layout as the G8 System repo
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Sequence_Diagram/UC_5_ViewDetail.png}
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Sequence_Diagram/UC_5_ViewDetail.drawio.png}
     \caption{UC 5 – View Detail}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Sequence_Diagram/UC_6_AddLaptopToCart.png}
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Sequence_Diagram/UC_6_AddLaptopToCart.drawio.png}
     \caption{UC 6 – Add Laptop to Cart}
 \end{figure}
 
@@ -529,13 +1336,13 @@ They are grouped by actor roles, following the same layout as the G8 System repo
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Sequence_Diagram/UC_8_DeleteLaptopFromCart.png}
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Sequence_Diagram/UC_8_DeleteLaptopFromCart.drawio.png}
     \caption{UC 8 – Delete Laptop from Cart}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Sequence_Diagram/UC_9_PlaceOrder.png}
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Sequence_Diagram/UC_9_PlaceOrder.drawio.png}
     \caption{UC 9 – Place Order}
 \end{figure}
 
@@ -547,7 +1354,7 @@ They are grouped by actor roles, following the same layout as the G8 System repo
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Sequence_Diagram/UC_13_TrackOrder.png}
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Sequence_Diagram/UC_13_TrackOrder.drawio.png}
     \caption{UC 13 – Track Order}
 \end{figure}
 
@@ -589,7 +1396,7 @@ They are grouped by actor roles, following the same layout as the G8 System repo
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Sequence_Diagram/UC_20_ChangeOrder_sStatus.drawio.png}
+    \includegraphics[width=\textwidth, height=0.85\textheight, keepaspectratio]{Sequence_Diagram/UC_20_ChangeOrderStatus.drawio.png}
     \caption{UC 20 – Change Order State}
 \end{figure}
 
@@ -738,7 +1545,8 @@ This package also contains the payment gateway abstraction to isolate external p
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{Package_Diagram/ControllerPackage_redrawn.drawio.png}
+    \hspace*{-0.15\textwidth}
+    \includegraphics[width=1.3\textwidth]{Package_Diagram/ControllerPackage_redrawn.drawio.png}
     \caption{Detailed Package Diagram -- Controller Package}
     \label{fig:controller_package_diagram}
 \end{figure}
