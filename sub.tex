@@ -1863,60 +1863,6 @@ reject & adminId:int, comments:String & void & Public & Rejects refund request a
 \end{tabular}
 \end{center}
 
-% --- M_FilterCriteria ---
-\paragraph{Class M\_FilterCriteria}
-\noindent\textbf{Description:} DTO used to express search and filter settings for catalog browsing. Ensures the controller receives a structured query request.
-
-\noindent\textbf{Attributes:}
-\begin{center}
-\begin{tabular}{|p{3cm}|p{2.5cm}|p{2.5cm}|p{6cm}|}
-\hline
-\textbf{Attribute} & \textbf{Datatype} & \textbf{Accessibility} & \textbf{Description} \\ \hline
-brand & String & Public & Brand filter value (optional). \\ \hline
-minPrice & Decimal & Public & Minimum price threshold (optional). \\ \hline
-maxPrice & Decimal & Public & Maximum price threshold (optional). \\ \hline
-keywords & String & Public & Text keyword search (optional). \\ \hline
-page & int & Public & Page index for pagination. \\ \hline
-pageSize & int & Public & Size of each page. \\ \hline
-\end{tabular}
-\end{center}
-
-\noindent\textbf{Methods:}
-\begin{center}
-\begin{tabular}{|p{3.5cm}|p{3.2cm}|p{2.3cm}|p{2cm}|p{4cm}|}
-\hline
-\textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
-isValid & N/A & Boolean & Public & Validates paging and price constraints (minPrice $\le$ maxPrice). \\ \hline
-\end{tabular}
-\end{center}
-
-% --- M_Metrics ---
-\paragraph{Class M\_Metrics}
-\noindent\textbf{Description:} Represents aggregated metrics used by the admin dashboard to visualize business performance over a selected time window.
-
-\noindent\textbf{Attributes:}
-\begin{center}
-\begin{tabular}{|p{3cm}|p{2.5cm}|p{2.5cm}|p{6cm}|}
-\hline
-\textbf{Attribute} & \textbf{Datatype} & \textbf{Accessibility} & \textbf{Description} \\ \hline
-totalOrders & int & Public & Total number of orders in time window. \\ \hline
-totalRevenue & Decimal & Public & Total revenue in time window. \\ \hline
-periodStart & DateTime & Public & Start time of aggregation window. \\ \hline
-periodEnd & DateTime & Public & End time of aggregation window. \\ \hline
-\end{tabular}
-\end{center}
-
-\noindent\textbf{Methods:}
-\begin{center}
-\begin{tabular}{|p{3.5cm}|p{3.2cm}|p{2.3cm}|p{2cm}|p{4cm}|}
-\hline
-\textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
-averageOrderValue & N/A & Decimal & Public & Returns totalRevenue divided by totalOrders (safe for 0). \\ \hline
-\end{tabular}
-\end{center}
-
-
-
 % =====================================================
 \subsubsection{View Package}
 % =====================================================
