@@ -10,6 +10,7 @@
 \usepackage[english]{babel}
 \usepackage{setspace}
 \usepackage{times}
+\usepackage{longtable}
 \usepackage{indentfirst}
 \usepackage{titlepic}
 \usepackage{enumitem}
@@ -1584,7 +1585,8 @@ updatedAt & DateTime & Private & Timestamp of last profile update. \\ \hline
 
 \noindent\textbf{Methods:}
 \begin{center}
-\begin{tabular}{|p{3.5cm}|p{3.2cm}|p{2.3cm}|p{2cm}|p{4cm}|}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|p{3.5cm}|p{4cm}|p{2.3cm}|p{2cm}|p{4cm}|}
 \hline
 \textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
 verifyPassword & plainPassword:String & Boolean & Public & Validates a password against \textit{passwordHash}. \\ \hline
@@ -1592,6 +1594,7 @@ setPasswordHash & hashedPassword:String & void & Public & Sets the hashed passwo
 deactivate & reason:String & void & Public & Deactivates the user and prevents future logins. \\ \hline
 setLastLogin & time:DateTime & void & Private & Updates \textit{lastLoginAt} after successful login. \\ \hline
 \end{tabular}
+}
 \end{center}
 
 % --- M_Laptop ---
@@ -1600,9 +1603,18 @@ setLastLogin & time:DateTime & void & Private & Updates \textit{lastLoginAt} aft
 
 \noindent\textbf{Attributes:}
 \begin{center}
-\begin{tabular}{|p{3cm}|p{2.5cm}|p{2.5cm}|p{6cm}|}
+
+\begin{longtable}{|p{3cm}|p{2.5cm}|p{2.5cm}|p{6cm}|}
 \hline
-\textbf{Attribute} & \textbf{Datatype} & \textbf{Accessibility} & \textbf{Description} \\ \hline
+\textbf{Attribute} & \textbf{Datatype} & \textbf{Accessibility} & \textbf{Description} \\ 
+\hline
+\endfirsthead
+
+\hline
+\textbf{Attribute} & \textbf{Datatype} & \textbf{Accessibility} & \textbf{Description} \\ 
+\hline
+\endhead
+
 laptopId & int & Public & Unique identifier for the laptop. \\ \hline
 brand & String & Public & Manufacturer brand name. \\ \hline
 subBrand & String & Public & Sub-brand or product line name. \\ \hline
@@ -1641,7 +1653,8 @@ rate & Decimal & Public & Average rating score. \\ \hline
 numRate & int & Public & Number of ratings received. \\ \hline
 isActive & Boolean & Private & Whether product is visible/available for sale. \\ \hline
 updatedAt & DateTime & Private & Timestamp of last inventory update. \\ \hline
-\end{tabular}
+
+\end{longtable}
 \end{center}
 
 \noindent\textbf{Methods:}
@@ -2579,7 +2592,7 @@ db & Session & Private & Database session for data access and transaction manage
 
 \noindent\textbf{Methods:}
 \begin{center}
-\begin{tabular}{|p{3.8cm}|p{3.8cm}|p{2cm}|p{1.3cm}|p{4cm}|}
+\begin{tabular}{|p{3.8cm}|p{3.8cm}|p{2.3cm}|p{1.3cm}|p{4cm}|}
 \hline
 \textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
 placeOrder & userId:int, cartId:int, shippingAddress:String, paymentMethod:String, firstName:String, lastName:String, userEmail:String, phoneNumber:String & int & Public & Creates order from cart with shipping/contact info and returns orderId. \\ \hline
@@ -2620,7 +2633,8 @@ gateway & C\_PaymentGateway & Private & Payment provider abstraction. \\ \hline
 
 \noindent\textbf{Methods:}
 \begin{center}
-\begin{tabular}{|p{3.5cm}|p{3.2cm}|p{3cm}|p{1.3cm}|p{4cm}|}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|p{3.5cm}|p{3.2cm}|p{4cm}|p{1.3cm}|p{4cm}|}
 \hline
 \textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
 processPayment & orderId:int, paymentMethod:String & M\_PaymentTransaction & Public & Creates transaction (completed for COD, pending for e-banking). \\ \hline
@@ -2629,6 +2643,7 @@ confirmPayment & transactionId:int, gatewayRef:String & M\_PaymentTransaction & 
 recordTransaction & orderId:int, amount:float, method:String, status:String & M\_PaymentTransaction & Public & Records payment transaction with specified status. \\ \hline
 updateOrderStatus & orderId:int, status:String & void & Public & Updates order state after payment outcome. \\ \hline
 \end{tabular}
+}
 \end{center}
 
 % --- C_RefundController ---
@@ -2646,7 +2661,8 @@ db & Session & Private & Database session for data access and transaction manage
 
 \noindent\textbf{Methods:}
 \begin{center}
-\begin{tabular}{|p{3.5cm}|p{3.2cm}|p{3.2cm}|p{1.3cm}|p{4cm}|}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|p{3.5cm}|p{3.2cm}|p{4cm}|p{1.3cm}|p{4cm}|}
 \hline
 \textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Access} & \textbf{Description} \\ \hline
 submitRefundRequest & userId:int, orderId:int, reason:String, email:String, phoneNumber:String & int & Public & Creates refund ticket with contact info and returns ticketId. \\ \hline
@@ -2655,6 +2671,7 @@ processTicket & ticketId:int, adminId:int, approve:bool, note:String & M\_Refund
 solveTicket & adminId:int, ticketId:int, decision:String, comments:String & M\_RefundTicket & Public & Resolves ticket with decision and comments, returns updated ticket. \\ \hline
 getUserTickets & userId:int & List\textless M\_RefundTicket\textgreater & Public & Returns tickets belonging to a specific user. \\ \hline
 \end{tabular}
+}
 \end{center}
 
 % --- C_ReviewController ---
