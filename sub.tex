@@ -2842,6 +2842,7 @@ Description: Captures customer purchase information and transaction status.
 
 \begin{table}[H]
 \centering
+\resizebox{\textwidth}{!}{
 \begin{tabular}{|c|l|l|c|l|p{4cm}|}
 \hline
 \textbf{Index} & \textbf{Fieldname} & \textbf{Datatype} & \textbf{Nullable} & \textbf{Constraint} & \textbf{Description} \\ \hline
@@ -2858,6 +2859,7 @@ Description: Captures customer purchase information and transaction status.
 11 & created\_at & TIMESTAMP WITH TIME ZONE & No & Default NOW & Order creation timestamp. \\ \hline
 12 & updated\_at & TIMESTAMP WITH TIME ZONE & No & Default NOW & Last update timestamp. \\ \hline
 \end{tabular}
+}
 \caption{Orders Table Design}
 \end{table}
 
